@@ -1,15 +1,21 @@
 import {combineReducers} from 'redux'
 
-const searchTextReducer = (oldSearchText='', action) => {
+const youtubeResults = (results=[], action) => {
   switch(action.type){
-    default :
-    return oldSearchText
+    case 'RETURN_RESULTS':
+      results= action.payload
+      return results
+    case 'RESET':
+      results = []
+      return results
+    default:
+    return results
   }
 }
 
 
 const rootReducer = combineReducers({
-  searchText: searchTextReducer
+  youtubeResults: youtubeResults
 })
 
 

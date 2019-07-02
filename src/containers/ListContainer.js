@@ -1,14 +1,19 @@
 import React from 'react'
 import MusicCard from '../components/MusicCard'
-
+import { Button, Icon } from 'semantic-ui-react'
 class ListContainer extends React.Component{
 
 
   render(){
     return(
       <div>
-        <h1>This is the List Container</h1>
-        <MusicCard />
+        <Button animated='fade'>
+          <Button.Content visible>
+            <Icon name='plus' />
+          </Button.Content>
+          <Button.Content hidden>New List</Button.Content>
+        </Button>
+
       </div>
     )
   }
