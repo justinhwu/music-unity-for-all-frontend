@@ -12,7 +12,7 @@ class ResultsContainer extends React.Component{
             { this.props.results.length === 0? <h3> No Results to Display!</h3>:
               this.props.results.map((result, index)=>(
             <Grid.Row>
-              <MusicCard result={result} key={result.id.videoId}/>
+              <MusicCard key={index} result={result} />
             </Grid.Row>
             ))
             }

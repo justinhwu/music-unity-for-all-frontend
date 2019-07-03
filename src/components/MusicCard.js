@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card, Icon, Image, Segment } from 'semantic-ui-react'
+import { Card, Icon, Image, Segment, Grid } from 'semantic-ui-react'
 import YouTube from 'react-youtube';
 import Iframe from 'react-iframe'
 class MusicCard extends React.Component {
@@ -26,17 +26,19 @@ class MusicCard extends React.Component {
   render(){
   return(
     <Segment>
-    <Card.Group>
-    <Card>
-      <Iframe
-        className='video'
-        width="350"
-        height="350"
-        src={`https://www.youtube.com/embed/${this.props.result.id.videoId}`}
-        id={this.props.result.id.videoId}
-        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-        allowFullScreen />
-    </Card>
+    <Grid>
+      <Grid.Row>
+      <div>
+        <Iframe
+          className='video'
+          width="350"
+          height="350"
+          src={`https://www.youtube.com/embed/${this.props.result.id.videoId}`}
+          id={this.props.result.id.videoId}
+          allowFullScreen />
+      </div>
+      </Grid.Row>
+      <Grid.Row>
     <Card id={`card-${this.props.result.id.videoId}`}>
       <Card.Content>
           <Card.Header>{this.props.result.snippet.title}</Card.Header>
@@ -51,7 +53,8 @@ class MusicCard extends React.Component {
           Link:
         </Card.Content>
       </Card>
-    </Card.Group>
+      </Grid.Row>
+    </Grid>
     </Segment>
     )
   }

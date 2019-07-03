@@ -1,7 +1,5 @@
 import searchYoutube from 'youtube-api-v3-search';
 import React from 'react'
-import _ from 'lodash'
-import faker from 'faker'
 import { Grid, Form, Input} from 'semantic-ui-react'
 import {connect} from 'react-redux'
 const API_KEY = 'AIzaSyATmQ8K3LV21JRsFhQ-ZRkPFQS5m4eheEE'
@@ -51,7 +49,7 @@ class SearchBar extends React.Component{
     }
     if(event.key === 'Enter'){
         searchYoutube(`${API_KEY}`, options, (error, result) => {
-        this.props.results(result.items)
+        debugger
         }
 
       )}

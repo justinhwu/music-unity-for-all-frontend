@@ -14,8 +14,11 @@ const youtubeResults = (results=[], action) => {
 }
 
 
+
+
 const rootReducer = combineReducers({
-  youtubeResults: youtubeResults
+  youtubeResults: youtubeResults,
+
 })
 
 

@@ -1,5 +1,4 @@
 import React from 'react';
-import Login from './components/Login'
 import './App.css';
 import { BrowserRouter as Router} from "react-router-dom";
 import PageContainer from './containers/PageContainer'

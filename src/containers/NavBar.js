@@ -1,17 +1,14 @@
+
 import React from 'react'
-import { Input, Menu} from 'semantic-ui-react'
+import { Menu} from 'semantic-ui-react'
 import {Link} from "react-router-dom";
-import {connect} from 'react-redux'
+
 
 class NavBar extends React.Component{
 
   state = { activeItem: window.location.href.split('/').pop() }
 
   handleItemClick = (event, { name }) => {
-    debugger
-    if(window.location.href.split('/').pop() !== 'discover'){
-      this.props.results()
-    }
     this.setState({ activeItem: name })
   }
 
@@ -55,12 +52,4 @@ class NavBar extends React.Component{
   }
 }
 
-const mapDispatchtoProps = (dispatch) => {
-  return{
-  results: () => dispatch({
-    type: 'RESET'
-  })
-  }
-}
-
-export default connect(null, mapDispatchtoProps)(NavBar)
+export default NavBar
