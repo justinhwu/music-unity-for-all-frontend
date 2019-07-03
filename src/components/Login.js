@@ -1,5 +1,7 @@
 import React from 'react'
 import { Button, Form, Grid, Header, Message, Segment } from 'semantic-ui-react'
+import {connect} from 'react-redux'
+import { Redirect} from "react-router-dom";
 
 class Login extends React.Component{
 
@@ -7,7 +9,8 @@ class Login extends React.Component{
     super()
     this.state = {
       username: '',
-      password: ''
+      password: '',
+      redirect: false
     }
   }
 
@@ -18,7 +21,6 @@ class Login extends React.Component{
   }
 
   handleSubmit = (event) => {
-    event.preventDefault()
     fetch('http://localhost:3000/login', {
       method: 'POST',
       headers: {
@@ -31,10 +33,24 @@ class Login extends React.Component{
       })
     })
     .then(resp => resp.json())
-    this.props.handleDisplay()
+    .then(Obj => {
+      if(Obj.error){
+        alert(Obj.error)
+      }
+      else{
+        this.props.handleDisplay()
+        alert(`Welcome back ${Obj.name}!`)
+        this.setState({
+          redirect: !this.state.redirect
+        })
+      }
+    })
   }
 
   render(){
+    if(this.state.redirect){
+      return <Redirect to='/home'/>
+    }
     return(
       <Grid textAlign='center' style={{ height: '75vh' }} verticalAlign='middle' >
         <Grid.Column style={{ maxWidth: 450 }}>
@@ -69,4 +85,8 @@ class Login extends React.Component{
 
 }
 
-export default Login
+const mapDispatchtoProps = (dispatch) => {
+
+}
+
+export default connect(null, mapDispatchtoProps)(Login)

@@ -44,12 +44,12 @@ class SearchBar extends React.Component{
     const options = {
       part: 'snippet',
       type: 'video',
-      maxResults: 15,
+      maxResults: 10,
       q: `${this.state.searchTerm}`
     }
     if(event.key === 'Enter'){
         searchYoutube(`${API_KEY}`, options, (error, result) => {
-        debugger
+          this.props.results(result.items)
         }
 
       )}

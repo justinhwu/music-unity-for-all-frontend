@@ -1,26 +1,33 @@
 import React from 'react'
-import { Button, Icon, Segment, Card } from 'semantic-ui-react'
+import { Button, Icon, Segment, Card, Modal } from 'semantic-ui-react'
 import ListCard from '../components/ListCard'
 import {connect} from 'react-redux'
-class ListContainer extends React.Component{
+import CreateListForm from '../components/CreateListForm'
 
+class ListContainer extends React.Component{
+  constructor(){
+    super()
+    this.state = {
+      modalDisplay: false
+    }
+  }
+
+  handleAddList = () => {
+    this.setState({
+      modalDisplay: !this.state.modalDisplay
+    })
+  }
 
 
   render(){
     return(
       <div>
         <div>
-        <Button animated='fade' floated='right' size='large' onClick={()=> console.log('Hi')}>
-          <Button.Content visible>
-            <Icon name='plus' />
-          </Button.Content>
-          <Button.Content hidden>New List</Button.Content>
-        </Button>
+          <CreateListForm />
         </div>
         <Card.Group>
           <ListCard />
         </Card.Group>
-
       </div>
     )
   }
@@ -28,7 +35,7 @@ class ListContainer extends React.Component{
 }
 
 const mapStateToProps = (state) => ({
-  
+
 })
 
 const mapDispatchtoProps = (dispatch) => {

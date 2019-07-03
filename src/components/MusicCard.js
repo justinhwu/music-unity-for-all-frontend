@@ -25,37 +25,34 @@ class MusicCard extends React.Component {
 
   render(){
   return(
-    <Segment>
-    <Grid>
-      <Grid.Row>
-      <div>
-        <Iframe
-          className='video'
-          width="350"
-          height="350"
-          src={`https://www.youtube.com/embed/${this.props.result.id.videoId}`}
-          id={this.props.result.id.videoId}
-          allowFullScreen />
-      </div>
-      </Grid.Row>
-      <Grid.Row>
-    <Card id={`card-${this.props.result.id.videoId}`}>
-      <Card.Content>
-          <Card.Header>{this.props.result.snippet.title}</Card.Header>
-          <Card.Meta>
-            <span className='date'>Published: {this.props.result.snippet.publishedAt}</span>
-          </Card.Meta>
-          <Card.Description>
-          <b>Artist(s):</b> {this.props.result.snippet.channelTitle} <br></br>
-          </Card.Description>
-      </Card.Content>
-        <Card.Content extra>
-          Link:
+    <Card.Group>
+      <Card>
+        <Card.Content>
+          <Iframe
+            className='video'
+            width="auto"
+            height="auto"
+            src={`https://www.youtube.com/embed/${this.props.result.id.videoId}`}
+            id={this.props.result.id.videoId}
+            allowFullScreen />
         </Card.Content>
       </Card>
-      </Grid.Row>
-    </Grid>
-    </Segment>
+      <Card id={`card-${this.props.result.id.videoId}`}>
+        <Card.Content>
+            <Card.Header>{this.props.result.snippet.title}</Card.Header>
+            <Card.Meta>
+              <span className='date'>Published: {this.props.result.snippet.publishedAt}</span>
+            </Card.Meta>
+            <Card.Description>
+            <b>Artist(s):</b> {this.props.result.snippet.channelTitle} <br></br>
+            </Card.Description>
+        </Card.Content>
+          <Card.Content extra>
+            Link:
+          </Card.Content>
+        </Card>
+    </Card.Group>
+
     )
   }
 }

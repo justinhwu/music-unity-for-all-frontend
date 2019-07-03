@@ -1,12 +1,19 @@
 import React from 'react';
 import './App.css';
-import { BrowserRouter as Router} from "react-router-dom";
+import { BrowserRouter as Router, Route, Redirect, Switch} from "react-router-dom";
 import PageContainer from './containers/PageContainer'
+import Login from './components/Login'
+import {connect} from 'react-redux'
+import ListContainer from './containers/ListContainer'
+import Discover from './containers/Discover'
+import HomePage from './containers/HomePage'
+import NavBar from './containers/NavBar'
+
 class App extends React.Component{
 
   state = {displayLogin: false}
 
-  handleDisplay = () => {
+  handleDisplay = (event) => {
     this.setState({
       displayLogin: !this.state.displayLogin
     })
@@ -15,11 +22,19 @@ class App extends React.Component{
   render(){
     return (
       <Router>
-        <PageContainer />
+        {this.state.displayLogin? <NavBar />: null}
+        <Route exact path='/mylists' component={ListContainer}/>
+        <Route exact path='/discover' component={Discover}/>
+        <Route exact path='/home' component={HomePage}/>
+        <Route path='/' render={()=> <Login handleDisplay={(event)=> this.handleDisplay(event)}/>}/>
+
       </Router>
     );
   }
 }
-// {this.state.displayLogin? <PageContainer />: <Route path='/' render={()=> <Login handleDisplay={this.handleDisplay}/>}/> }
 
-export default App;
+const mapStateToProps = (state) => {
+
+}
+
+export default connect(mapStateToProps)(App)

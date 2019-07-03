@@ -8,15 +8,15 @@ class ResultsContainer extends React.Component{
   render(){
     return(
       <Grid>
-         <Grid.Column width={6}>
+
             { this.props.results.length === 0? <h3> No Results to Display!</h3>:
               this.props.results.map((result, index)=>(
-            <Grid.Row>
+
               <MusicCard key={index} result={result} />
-            </Grid.Row>
+
             ))
             }
-        </Grid.Column>
+
       </Grid>
     )
   }

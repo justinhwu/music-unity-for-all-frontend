@@ -11,10 +11,7 @@ class PageContainer extends React.Component{
   render(){
     return (
       <Router>
-        <NavBar />
-        <Route path='/mylists' component={ListContainer}/>
-        <Route path='/discover' component={Discover}/>
-        <Route path='/home' component={HomePage}/>
+      
       </Router>
     );
   }
