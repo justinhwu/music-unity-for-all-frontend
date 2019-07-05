@@ -2,16 +2,20 @@
 import React from 'react'
 import { Menu} from 'semantic-ui-react'
 import {Link} from "react-router-dom";
+import {connect} from 'react-redux'
 
 
 class NavBar extends React.Component{
 
-  state = { activeItem: window.location.href.split('/').pop() }
+  state = { activeItem: 'home' }
 
   handleItemClick = (event, { name }) => {
     this.setState({ activeItem: name })
   }
 
+  handleLogOut = () => {
+    this.props.logout()
+  }
 
   render(){
     const { activeItem } = this.state
@@ -42,9 +46,9 @@ class NavBar extends React.Component{
             onClick={this.handleItemClick}
             />
           <Menu.Item
-            name='login'
-            active={activeItem==='login'}
-            onClick={this.handleItemClick}
+            name='logout'
+            active={activeItem==='logout'}
+            onClick={this.handleLogOut}
             />
         </Menu.Menu>
           </Menu>
@@ -52,5 +56,16 @@ class NavBar extends React.Component{
   }
 }
 
+const mapStateToProps = (state) => {
+  return{
+    user: state.user
+  }
+}
 
-export default NavBar
+const mapDispatchtoProps = (dispatch) => {
+  return{
+    logout: () => dispatch({type: 'logout'})
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchtoProps)(NavBar)

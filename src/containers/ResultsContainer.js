@@ -1,7 +1,7 @@
 import React from 'react'
 import {Grid} from 'semantic-ui-react'
 import {connect} from 'react-redux'
-import MusicCard from '../components/MusicCard'
+import YoutubeCard from '../components/YoutubeCard'
 class ResultsContainer extends React.Component{
 
 
@@ -11,9 +11,7 @@ class ResultsContainer extends React.Component{
 
             { this.props.results.length === 0? <h3> No Results to Display!</h3>:
               this.props.results.map((result, index)=>(
-
-              <MusicCard key={index} result={result} />
-
+              <YoutubeCard key={index} result={result} />
             ))
             }
 

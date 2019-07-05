@@ -30,10 +30,6 @@ class SearchBar extends React.Component{
     document.body.appendChild(script);
   }
 
-  componentDidMount() {
-    this.loadYoutubeApi();
-  }
-
   handleSearchTerm = (event) => {
     this.setState({
       searchTerm: event.target.value
@@ -44,7 +40,7 @@ class SearchBar extends React.Component{
     const options = {
       part: 'snippet',
       type: 'video',
-      maxResults: 10,
+      maxResults: 5,
       q: `${this.state.searchTerm}`
     }
     if(event.key === 'Enter'){

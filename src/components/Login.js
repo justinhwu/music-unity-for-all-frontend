@@ -9,9 +9,8 @@ class Login extends React.Component{
     super()
     this.state = {
       username: '',
-      password: '',
-      redirect: false
-    }
+      password: ''
+      }
   }
 
   handleChange = (event) => {
@@ -38,7 +37,7 @@ class Login extends React.Component{
         alert(Obj.error)
       }
       else{
-        this.props.handleDisplay()
+        this.props.sendUser(Obj)
         alert(`Welcome back ${Obj.name}!`)
         this.setState({
           redirect: !this.state.redirect
@@ -48,7 +47,7 @@ class Login extends React.Component{
   }
 
   render(){
-    if(this.state.redirect){
+    if(this.props.user.length !==0){
       return <Redirect to='/home'/>
     }
     return(
@@ -86,7 +85,15 @@ class Login extends React.Component{
 }
 
 const mapDispatchtoProps = (dispatch) => {
-
+  return{
+    sendUser: (userObj) => dispatch({type: 'LOGIN', payload: userObj})
+  }
 }
 
-export default connect(null, mapDispatchtoProps)(Login)
+const mapStateToProps = (state) => {
+  return{
+    user: state.user
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchtoProps)(Login)
