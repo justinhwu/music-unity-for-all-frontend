@@ -9,7 +9,7 @@ class ListPage extends React.Component{
 
   render(){
     return(
-      <div>
+    <div>
       <Button floated='left' as={Link} to='/mylists'>Go Back</Button>
         <Card centered>
           <Image centered size='medium' src={`${this.props.selectedList.image}`} />
@@ -18,11 +18,12 @@ class ListPage extends React.Component{
             <Card.Description>{this.props.selectedList.description}</Card.Description>
           </Card.Content>
         </Card>
-        <Card.Group>
-          <Card>
-            <Card.Header>{this.props.selectedList.name}</Card.Header>
-          </Card>
-        </Card.Group>
+      <Segment>
+
+            {this.props.selectedList.songs.map((song, index)=>(
+              <YoutubeCard key={index+1} result={song} />
+            ))}
+      </Segment>
       </div>
     )
   }

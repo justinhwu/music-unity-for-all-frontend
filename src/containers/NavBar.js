@@ -15,6 +15,7 @@ class NavBar extends React.Component{
 
   handleLogOut = () => {
     this.props.logout()
+    setTimeout(alert('Logging Out!'), 1500)
   }
 
   render(){
@@ -48,7 +49,7 @@ class NavBar extends React.Component{
           <Menu.Item
             name='logout'
             active={activeItem==='logout'}
-            onClick={this.handleLogOut}
+            onClick={() => this.handleLogOut()}
             />
         </Menu.Menu>
           </Menu>
@@ -64,7 +65,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchtoProps = (dispatch) => {
   return{
-    logout: () => dispatch({type: 'logout'})
+    logout: () => dispatch({type: 'LOGOUT'})
   }
 }
 

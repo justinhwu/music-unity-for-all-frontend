@@ -14,7 +14,7 @@ const ListCard = (props) => {
         <Card.Header>{props.playlist.name}</Card.Header>
         <Card.Description>
         {props.playlist.description}<br></br>
-        <b>Total Songs:</b> {props.playlist.songs.length}
+      <b>Total Songs:</b> {props.playlist.songs? props.playlist.songs.length: 0}
         </Card.Description>
       </Card.Content>
 

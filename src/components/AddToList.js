@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Header, Icon, Modal, Form, Input, TextArea, Label } from 'semantic-ui-react'
+import { Checkbox, Button, Header, Icon, Modal, Form, Input, TextArea, Label } from 'semantic-ui-react'
 import {connect} from 'react-redux'
 
 class AddToList extends React.Component{
@@ -11,7 +11,8 @@ class AddToList extends React.Component{
       description: '',
       genre: '',
       image: '',
-      display: false
+      display: false,
+      selected: []
     }
   }
 
@@ -21,7 +22,7 @@ class AddToList extends React.Component{
       <Button.Content visible>
         <Icon name='plus' />
       </Button.Content>
-      <Button.Content hidden>New List</Button.Content>
+      <Button.Content hidden>Add to a List</Button.Content>
     </Button>)
   }
 
@@ -38,7 +39,32 @@ class AddToList extends React.Component{
   }
 
   handleSubmit = (event) => {
-    debugger
+    const {videoId, title, publishedAt, channelTitle, description } = this.props.selection
+    fetch(`http://localhost:3000/addsong`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify({
+        playlist_ids: this.state.selected,
+        videoId: videoId,
+        title: title,
+        publishedAt: publishedAt,
+        channelTitle: channelTitle,
+        description: description
+      })
+    })
+    .then(resp => resp.json())
+    .then(songObj => {
+      this.props.addSong(songObj, this.state.selected)
+    })
+  }
+
+  handleSelect = (event) => {
+    this.setState({
+      selected: [...this.state.selected, event.currentTarget.parentElement.id]
+    })
   }
 
   render(){
@@ -48,9 +74,13 @@ class AddToList extends React.Component{
           <Modal.Content>
             <Form onSubmit={(event) => this.handleSubmit(event)}>
               <Form.Group widths='equal'>
-              {this.props.lists.map((list)=>(
-                <Form.Checkbox id={list.id} label={list.name}/>
-              ))}
+              {this.props.lists.map((list)=>{
+                return(
+                <Form.Field id={list.id}>
+                  <Checkbox value={list.id} label={list.name} onClick={(event)=> this.handleSelect(event)}/>
+                </Form.Field>
+              )
+              })}
               </Form.Group>
               <Button color='green'>
                 <Icon name='checkmark' /> Create List
@@ -74,7 +104,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) =>{
   return{
-    addList: (list) => dispatch({type:'ADD_LIST', payload: list})
+    addSong: (song, playlist_ids) => dispatch({type: 'ADD_SONG', song: song, playlist_ids: playlist_ids})
   }
 }
 

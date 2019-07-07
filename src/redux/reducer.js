@@ -24,6 +24,7 @@ const userStore = (user=[], action) => {
     user = action.payload
     return user
     case 'LOGOUT':
+    user = []
     return user
     default:
     return user
@@ -36,6 +37,15 @@ const userLists = (lists=[], action) => {
     return action.payload.playlists
     case 'ADD_LIST':
     return [...lists, action.payload]
+    case 'ADD_SONG':
+    let finder = lists.filter((list)=> {
+      if(action.playlist_ids.includes(`${list.id}`)){
+        return list
+      }}).map((list)=> list.songs.push(action.song))
+    debugger
+    let new_finder = lists.filter((list)=> !action.playlist_ids.includes(`${list.id}`))
+    debugger
+    return
     default:
     return lists
   }

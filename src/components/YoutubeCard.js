@@ -38,7 +38,7 @@ class YoutubeCard extends React.Component {
                 <Icon name='youtube'/>
               </Menu.Item>
               <Menu.Item>
-                <AddToList />
+                <AddToList selection={this.props.result}/>
               </Menu.Item>
             </Menu>
           </Card.Content>
