@@ -6,9 +6,8 @@ class YoutubeCard extends React.Component {
 
   render(){
   const {videoId, title, publishedAt, channelTitle, description, url} = this.props.result
-
   return(
-    <Card.Group>
+
       <Card id={`card-${videoId}`}>
         <Embed id={videoId} placeholder={url} source='youtube' />
         <Card.Content>
@@ -42,7 +41,7 @@ class YoutubeCard extends React.Component {
             </Menu>
           </Card.Content>
         </Card>
-    </Card.Group>
+
 
     )
   }

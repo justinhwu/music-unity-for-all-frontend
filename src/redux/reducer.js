@@ -65,12 +65,7 @@ const selectedList = (selectedList=[], action) => {
 const handleTrending = (trending=[], action) => {
   switch(action.type){
     case 'GET_TRENDING':
-    trending = action.payload.map((item)=> {
-      const {id: {videoId}, snippet: {title, publishedAt, channelTitle, description, thumbnails: {default: {url}}}} = item
-      let new_hash = {videoId: videoId, title: title, publishedAt: publishedAt, channelTitle: channelTitle, description: description, url: url}
-      return new_hash
-    })
-    return trending
+    return action.payload
     default:
     return trending
   }
