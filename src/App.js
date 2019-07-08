@@ -8,10 +8,23 @@ import Discover from './containers/Discover'
 import HomePage from './containers/HomePage'
 import NavBar from './containers/NavBar'
 import ListPage from './containers/ListPage'
+const API_KEY = 'AIzaSyATmQ8K3LV21JRsFhQ-ZRkPFQS5m4eheEE'
 
 class App extends React.Component{
 
-  state = {displayLogin: false}
+  componentDidMount(){
+    fetch(`https://www.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&maxResults=10&regionCode=US&videoCategoryId=10&key=${API_KEY}`)
+    .then(resp => resp.json())
+    .then(songs => {
+      songs.items = songs.items.map((item)=> {
+            const {id, snippet: {title, publishedAt, channelTitle, description, thumbnails: {default: {url}}}} = item
+            let new_hash = {videoId: id, title: title, publishedAt: publishedAt, channelTitle: channelTitle, description: description, url: url}
+            return new_hash
+          })
+      this.props.trendingVideos(songs.items)
+    })
+  }
+
 
   render(){
     return (
@@ -38,4 +51,13 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps)(App)
+const mapDispatchToProps = (dispatch) => {
+  return{
+    trendingVideos: (videos) => dispatch({
+      type: 'GET_TRENDING', payload: videos
+    })
+  }
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(App)
