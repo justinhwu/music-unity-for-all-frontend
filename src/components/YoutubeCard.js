@@ -1,27 +1,18 @@
 import React from 'react'
-import { Card, Icon, Image, Segment, Grid, Menu} from 'semantic-ui-react'
-import YouTube from 'react-youtube';
+import { Card, Icon, Image, Segment, Grid, Menu, Button, Embed} from 'semantic-ui-react'
 import Iframe from 'react-iframe'
 import {Link} from "react-router-dom";
 import AddToList from './AddToList'
+import {connect} from 'react-redux'
 class YoutubeCard extends React.Component {
+
   render(){
-  const {videoId, title, publishedAt, channelTitle, description } = this.props.result
+  const {videoId, title, publishedAt, channelTitle, description, url} = this.props.result
 
   return(
     <Card.Group>
-      <Card>
-        <Card.Content>
-          <Iframe
-            className='video'
-            width="auto"
-            height="auto"
-            src={`https://www.youtube.com/embed/${videoId}`}
-            id={videoId}
-            allowFullScreen />
-        </Card.Content>
-      </Card>
       <Card id={`card-${videoId}`}>
+        <Embed id={videoId} placeholder={url} source='youtube' />
         <Card.Content>
             <Card.Header>{title}</Card.Header>
             <Card.Meta>
@@ -38,7 +29,17 @@ class YoutubeCard extends React.Component {
                 <Icon name='youtube'/>
               </Menu.Item>
               <Menu.Item>
-                <AddToList selection={this.props.result}/>
+                {this.props.show ?
+                <div>
+                  <Button animated='fade' floated='right' size='large' onClick={() => this.props.handleRemove(this.props.result)}>
+                    <Button.Content visible>
+                      <Icon name='remove' />
+                    </Button.Content>
+                    <Button.Content hidden>Remove Song</Button.Content>
+                  </Button>
+                </div>
+                :<AddToList show={this.props.show} selection={this.props.result}/>
+                }
               </Menu.Item>
             </Menu>
           </Card.Content>
@@ -49,13 +50,18 @@ class YoutubeCard extends React.Component {
   }
 }
 
-// <YouTube
-//   videoId={videoId}
-//   opts={opts}
+const mapStateToProps = (state) => {
+  return {
+    user: state.user
+  }
+}
+// <Iframe
+//   className='video'
+//   width="auto"
+//   height="auto"
+//   src={`https://www.youtube.com/embed/${videoId}`}
 //   id={videoId}
-//   className={videoId}
-// />
+//   allowFullScreen />
 
-// <Image src='https://upload.wikimedia.org/wikipedia/en/b/bf/Gold_Stupid_Love_Excision_Illenium_Cover.jpeg' wrapped ui={false} />
 
-export default YoutubeCard
+export default connect(mapStateToProps)(YoutubeCard)

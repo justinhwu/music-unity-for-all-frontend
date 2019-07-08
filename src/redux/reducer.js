@@ -4,8 +4,8 @@ const youtubeResults = (results=[], action) => {
   switch(action.type){
     case 'RETURN_RESULTS':
       results = action.payload.map((item)=> {
-        const {id: {videoId}, snippet: {title, publishedAt, channelTitle, description}} = item
-        let new_hash = {videoId: videoId, title: title, publishedAt: publishedAt, channelTitle: channelTitle, description: description}
+        const {id: {videoId}, snippet: {title, publishedAt, channelTitle, description, thumbnails: {default: {url}}}} = item
+        let new_hash = {videoId: videoId, title: title, publishedAt: publishedAt, channelTitle: channelTitle, description: description, url: url}
         return new_hash
         }
       )
@@ -38,14 +38,9 @@ const userLists = (lists=[], action) => {
     case 'ADD_LIST':
     return [...lists, action.payload]
     case 'ADD_SONG':
-    let finder = lists.filter((list)=> {
-      if(action.playlist_ids.includes(`${list.id}`)){
-        return list
-      }}).map((list)=> list.songs.push(action.song))
-    debugger
-    let new_finder = lists.filter((list)=> !action.playlist_ids.includes(`${list.id}`))
-    debugger
-    return
+    return  action.playlists
+    case 'REMOVE_SONG':
+    return action.playlists
     default:
     return lists
   }
@@ -55,6 +50,9 @@ const selectedList = (selectedList=[], action) => {
   switch(action.type){
   case 'SELECTED_LIST':
   selectedList = action.payload
+  return selectedList
+  case 'REMOVE_SONG':
+  selectedList.songs = selectedList.songs.filter((song) => song.id !== action.song)
   return selectedList
   default:
   return selectedList

@@ -84,7 +84,7 @@ class CreateListForm extends React.Component{
               </Button>
           </Form>
 
-            <Button color='red'>
+            <Button color='red' onClick={() => this.handleClick()}>
               <Icon name='remove' /> Cancel
             </Button>
         </Modal.Content>

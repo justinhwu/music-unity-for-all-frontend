@@ -41,6 +41,7 @@ class SearchBar extends React.Component{
       part: 'snippet',
       type: 'video',
       maxResults: 5,
+      videoCategoryId: 10,
       q: `${this.state.searchTerm}`
     }
     if(event.key === 'Enter'){

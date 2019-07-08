@@ -22,7 +22,7 @@ class AddToList extends React.Component{
       <Button.Content visible>
         <Icon name='plus' />
       </Button.Content>
-      <Button.Content hidden>Add to a List</Button.Content>
+      <Button.Content hidden >Add to List</Button.Content>
     </Button>)
   }
 
@@ -39,7 +39,7 @@ class AddToList extends React.Component{
   }
 
   handleSubmit = (event) => {
-    const {videoId, title, publishedAt, channelTitle, description } = this.props.selection
+    const {videoId, title, publishedAt, channelTitle, description, url} = this.props.selection
     fetch(`http://localhost:3000/addsong`, {
       method: 'POST',
       headers: {
@@ -52,12 +52,14 @@ class AddToList extends React.Component{
         title: title,
         publishedAt: publishedAt,
         channelTitle: channelTitle,
-        description: description
+        description: description,
+        url: url,
+        user_id: this.props.user.id
       })
     })
     .then(resp => resp.json())
-    .then(songObj => {
-      this.props.addSong(songObj, this.state.selected)
+    .then(playlists => {
+      this.props.addSong(playlists)
     })
   }
 
@@ -83,10 +85,10 @@ class AddToList extends React.Component{
               })}
               </Form.Group>
               <Button color='green'>
-                <Icon name='checkmark' /> Create List
+                <Icon name='checkmark' /> Add to List
               </Button>
           </Form>
-            <Button color='red'>
+            <Button color='red' onClick={() => this.handleClick()}>
               <Icon name='remove' /> Cancel
             </Button>
         </Modal.Content>
@@ -98,13 +100,14 @@ class AddToList extends React.Component{
 
 const mapStateToProps = (state) => {
   return{
-    lists: state.lists
+    lists: state.lists,
+    user: state.user
   }
 }
 
 const mapDispatchToProps = (dispatch) =>{
   return{
-    addSong: (song, playlist_ids) => dispatch({type: 'ADD_SONG', song: song, playlist_ids: playlist_ids})
+    addSong: (playlists) => dispatch({type: 'ADD_SONG', playlists: playlists})
   }
 }
 
