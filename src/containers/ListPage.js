@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import YoutubeCard from '../components/YoutubeCard'
-import { Button, Icon, Segment, Card, Header, Image} from 'semantic-ui-react'
+import { Button, Segment, Card, Image} from 'semantic-ui-react'
 import {Link} from "react-router-dom";
 
 

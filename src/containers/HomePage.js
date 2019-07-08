@@ -9,10 +9,8 @@ class HomePage extends React.Component{
       <Segment>
         <Header as='h2' icon>
          <Icon name='hotjar' />
-         Account Settings
-         <Header.Subheader>Manage your account settings and set e-mail preferences.</Header.Subheader>
+         Most Popular Music Videos on Youtube
        </Header>
-        <Trending />
       </Segment>
     )
   }
@@ -20,3 +18,5 @@ class HomePage extends React.Component{
 }
 
 export default HomePage
+
+// <Trending />

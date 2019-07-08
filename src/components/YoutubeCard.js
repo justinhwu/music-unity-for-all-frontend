@@ -1,7 +1,5 @@
 import React from 'react'
-import { Card, Icon, Image, Segment, Grid, Menu, Button, Embed} from 'semantic-ui-react'
-import Iframe from 'react-iframe'
-import {Link} from "react-router-dom";
+import { Card, Icon, Menu, Button, Embed} from 'semantic-ui-react'
 import AddToList from './AddToList'
 import {connect} from 'react-redux'
 class YoutubeCard extends React.Component {

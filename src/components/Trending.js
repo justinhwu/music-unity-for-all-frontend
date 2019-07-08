@@ -1,7 +1,6 @@
 import React from 'react'
 import Carousel from 'react-multi-carousel';
 import YoutubeCard from './YoutubeCard'
-import { Card} from 'semantic-ui-react'
 import 'react-multi-carousel/lib/styles.css';
 import searchYoutube from 'youtube-api-v3-search';
 const API_KEY = 'AIzaSyATmQ8K3LV21JRsFhQ-ZRkPFQS5m4eheEE'
@@ -17,10 +16,9 @@ class Trending extends React.Component{
       videoCategoryId: 10
     }
     searchYoutube(`${API_KEY}`, options, (error, result) => {
-      debugger
       let results = result.items.map((item)=> {
-        const {id: {videoId}, snippet: {title, publishedAt, channelTitle, description}} = item
-        let new_hash = {videoId: videoId, title: title, publishedAt: publishedAt, channelTitle: channelTitle, description: description}
+        const {id: {videoId}, snippet: {title, publishedAt, channelTitle, description, thumbnails: {default: {url}}}} = item
+        let new_hash = {videoId: videoId, title: title, publishedAt: publishedAt, channelTitle: channelTitle, description: description, url: url}
         return new_hash
       })
       this.setState({
@@ -35,7 +33,7 @@ class Trending extends React.Component{
       additionalTransfrom={0}
       arrows
       autoPlay
-      autoPlaySpeed={2000}
+      autoPlaySpeed={3000}
       centerMode={false}
       containerClass="container-with-dots"
       dotListClass=""
@@ -77,7 +75,7 @@ class Trending extends React.Component{
       swipeable
       >
       {this.state.trendingVideos.map((video, index)=>(
-        <YoutubeCard result={video} key={index}/>
+        <YoutubeCard result={video} key={video.id}/>
       ))}
     </Carousel>
     )

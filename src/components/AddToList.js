@@ -1,5 +1,5 @@
 import React from 'react'
-import { Checkbox, Button, Header, Icon, Modal, Form, Input, TextArea, Label } from 'semantic-ui-react'
+import { Checkbox, Button, Header, Icon, Modal, Form } from 'semantic-ui-react'
 import {connect} from 'react-redux'
 
 class AddToList extends React.Component{

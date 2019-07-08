@@ -1,9 +1,8 @@
 import React from 'react'
-import { Card, Modal } from 'semantic-ui-react'
+import { Card } from 'semantic-ui-react'
 import ListCard from '../components/ListCard'
 import {connect} from 'react-redux'
 import CreateListForm from '../components/CreateListForm'
-import AddToList from '../components/AddToList'
 class ListContainer extends React.Component{
   constructor(){
     super()
@@ -24,7 +23,6 @@ class ListContainer extends React.Component{
       <div>
         <div>
           <CreateListForm />
-          <AddToList />
         </div>
         <Card.Group>
           {this.props.lists.map((playlist)=>(

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Header, Icon, Modal, Form, Input, TextArea, Label } from 'semantic-ui-react'
+import { Button, Header, Icon, Modal, Form, TextArea } from 'semantic-ui-react'
 import {connect} from 'react-redux'
 
 class CreateListForm extends React.Component{
@@ -63,22 +63,22 @@ class CreateListForm extends React.Component{
         <Header icon='list alternate outline' content='Create a New List' />
           <Modal.Content>
 
-            //Form that allows user to create list
+            {/*Form that allows user to create list*/}
             <Form onSubmit={(event) => this.handleSubmit(event)}>
 
-              //List Name, Image, Genre Inputs
+              {/*List Name, Image, Genre Inputs*/}
               <Form.Group widths='equal'>
                 <Form.Input value={this.state.name} placeholder='List Name' type='text' label='List Name' name='name' onChange={(event)=>this.handleChange(event)}/>
                 <Form.Input value={this.state.image} placeholder='Image' type='text' label='Image' name='image'  onChange={(event)=>this.handleChange(event)}/>
                 <Form.Input value={this.state.genre} placeholder='Genre' type='text' label='Genre' name='genre'  onChange={(event)=>this.handleChange(event)}/>
               </Form.Group>
 
-              //Text Field for the Description
+              {/*Text Field for the Description*/}
               <Form.Group widths='equal'>
                 <TextArea value={this.state.description} name='description' label='Description' placeholder='Description'  onChange={(event)=>this.handleChange(event)}/>
               </Form.Group>
 
-              //Create List Button
+              {/*Create List Button*/}
               <Button color='green'>
                 <Icon name='checkmark' /> Create List
               </Button>
