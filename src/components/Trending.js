@@ -2,28 +2,19 @@ import React from 'react'
 import Carousel from 'react-multi-carousel';
 import YoutubeCard from './YoutubeCard'
 import 'react-multi-carousel/lib/styles.css';
-import searchYoutube from 'youtube-api-v3-search';
-const API_KEY = 'AIzaSyATmQ8K3LV21JRsFhQ-ZRkPFQS5m4eheEE'
+import {connect} from 'react-redux'
 class Trending extends React.Component{
-  state = {trendingVideos: []}
+
+  constructor(){
+    super()
+    this.state = {
+      trendingVideos: []
+    }
+  }
 
   componentDidMount(){
-    const options = {
-      part: 'snippet',
-      type: 'video',
-      chart: 'mostPopular',
-      maxResults: 10,
-      videoCategoryId: 10
-    }
-    searchYoutube(`${API_KEY}`, options, (error, result) => {
-      let results = result.items.map((item)=> {
-        const {id: {videoId}, snippet: {title, publishedAt, channelTitle, description, thumbnails: {default: {url}}}} = item
-        let new_hash = {videoId: videoId, title: title, publishedAt: publishedAt, channelTitle: channelTitle, description: description, url: url}
-        return new_hash
-      })
-      this.setState({
-        trendingVideos: results
-      })
+    this.setState({
+      trendingVideos: this.props.trending
     })
   }
 
@@ -33,7 +24,7 @@ class Trending extends React.Component{
       additionalTransfrom={0}
       arrows
       autoPlay
-      autoPlaySpeed={3000}
+      autoPlaySpeed={2500}
       centerMode={false}
       containerClass="container-with-dots"
       dotListClass=""
@@ -74,12 +65,18 @@ class Trending extends React.Component{
       slidesToSlide={2}
       swipeable
       >
-      {this.state.trendingVideos.map((video, index)=>(
-        <YoutubeCard result={video} key={video.id}/>
+      { this.props.trending.map((video, index)=>(
+        <YoutubeCard result={video} key={index+1}/>
       ))}
     </Carousel>
     )
   }
 }
 
-export default Trending
+const mapStateToProps = (state) => {
+  return{
+    trending: state.handleTrending
+  }
+}
+
+export default connect(mapStateToProps)(Trending)

@@ -9,7 +9,7 @@ const ListCard = (props) => {
   return(
     <Link className='item' to={`/mylists/${props.playlist.id}`}>
     <Card onClick={() => (props.select_list(props.playlist))} id={props.playlist.id}>
-      <Image style={{display: 'block'}} src={props.playlist.image} size='medium'/>
+      <Image style={{display: 'block'}} src={props.playlist.image? props.playlist.image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaZPd4618kfPOrzfH2Vcmyf6wHO1zpE9IUNkH7xpGuRsn07ytR'} size='medium'/>
       <Card.Content>
         <Card.Header>{props.playlist.name}</Card.Header>
         <Card.Description>

@@ -61,6 +61,7 @@ class AddToList extends React.Component{
     .then(playlists => {
       this.props.addSong(playlists)
     })
+    this.handleClick()
   }
 
   handleSelect = (event) => {
@@ -76,10 +77,10 @@ class AddToList extends React.Component{
           <Modal.Content>
             <Form onSubmit={(event) => this.handleSubmit(event)}>
               <Form.Group widths='equal'>
-              {this.props.lists.map((list)=>{
+              {this.props.lists.map((list, index)=>{
                 return(
-                <Form.Field id={list.id}>
-                  <Checkbox value={list.id} label={list.name} onClick={(event)=> this.handleSelect(event)}/>
+                <Form.Field id={list.id} key={index}>
+                  <Checkbox key={index} value={list.id} label={list.name} onClick={(event)=> this.handleSelect(event)}/>
                 </Form.Field>
               )
               })}

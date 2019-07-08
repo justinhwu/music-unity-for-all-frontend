@@ -36,7 +36,7 @@ class ListPage extends React.Component{
       <Button floated='left' as={Link} to='/mylists'>Go Back</Button>
       <Button floated='right' as={Link} to='/discover'>Add a Song</Button>
         <Card centered>
-          <Image centered size='medium' src={`${this.props.selectedList.image}`} />
+          <Image centered size='medium' src={this.props.selectedList.image? this.props.selectedList.image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaZPd4618kfPOrzfH2Vcmyf6wHO1zpE9IUNkH7xpGuRsn07ytR'} />
           <Card.Content>
             <Card.Header as='h2' textAlign='center'>{this.props.selectedList.name}</Card.Header>
             <Card.Description>{this.props.selectedList.description}</Card.Description>

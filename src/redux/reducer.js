@@ -1,20 +1,20 @@
 import {combineReducers} from 'redux'
 
-const youtubeResults = (results=[], action) => {
+const youtubeResults = (searchResults=[], action) => {
   switch(action.type){
     case 'RETURN_RESULTS':
-      results = action.payload.map((item)=> {
+      searchResults = action.payload.map((item)=> {
         const {id: {videoId}, snippet: {title, publishedAt, channelTitle, description, thumbnails: {default: {url}}}} = item
         let new_hash = {videoId: videoId, title: title, publishedAt: publishedAt, channelTitle: channelTitle, description: description, url: url}
         return new_hash
         }
       )
-      return results
+      return searchResults
     case 'RESET':
-      results = []
-      return results
+      searchResults = []
+      return searchResults
     default:
-    return results
+    return searchResults
   }
 }
 
@@ -36,6 +36,8 @@ const userLists = (lists=[], action) => {
     case 'LOGIN':
     return action.payload.playlists
     case 'ADD_LIST':
+    action.payload.image = ''
+    action.payload.genre = null
     return [...lists, action.payload]
     case 'ADD_SONG':
     return  action.playlists
@@ -60,11 +62,26 @@ const selectedList = (selectedList=[], action) => {
 
 }
 
+const handleTrending = (trending=[], action) => {
+  switch(action.type){
+    case 'GET_TRENDING':
+    trending = action.payload.map((item)=> {
+      const {id: {videoId}, snippet: {title, publishedAt, channelTitle, description, thumbnails: {default: {url}}}} = item
+      let new_hash = {videoId: videoId, title: title, publishedAt: publishedAt, channelTitle: channelTitle, description: description, url: url}
+      return new_hash
+    })
+    return trending
+    default:
+    return trending
+  }
+}
+
 const rootReducer = combineReducers({
   youtubeResults: youtubeResults,
   user: userStore,
   lists: userLists,
-  selectedList: selectedList
+  selectedList: selectedList,
+  handleTrending: handleTrending
 })
 
 

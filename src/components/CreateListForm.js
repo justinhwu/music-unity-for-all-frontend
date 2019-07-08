@@ -8,9 +8,9 @@ class CreateListForm extends React.Component{
     super()
     this.state = {
       name: '',
-      description: '',
-      genre: '',
-      image: '',
+      description: null,
+      genre: null,
+      image: null,
       display: false
     }
   }
@@ -38,6 +38,7 @@ class CreateListForm extends React.Component{
   }
 
   handleSubmit = (event) => {
+
     fetch('http://localhost:3000/playlists', {
       method: 'POST',
       headers: {
