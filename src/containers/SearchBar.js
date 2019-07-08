@@ -58,7 +58,7 @@ class SearchBar extends React.Component{
       <Grid>
         <Grid.Column >
          <Form onKeyDown={(event)=>this.handleSubmit(event)} size='large'>
-           <Input loading icon='user' placeholder='Search...' onChange={(event)=>this.handleSearchTerm(event)} size='small' style={{width: "750px", display:'center aligned grid'}}/>
+           <Input icon='search' placeholder='Search...' onChange={(event)=>this.handleSearchTerm(event)} size='small' style={{width: "750px", display:'center aligned grid'}}/>
          </Form>
         </Grid.Column>
       </Grid>

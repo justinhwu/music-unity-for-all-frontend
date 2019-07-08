@@ -16,7 +16,6 @@ class HomePage extends React.Component{
   }
 
 }
+// <Trending />
 
 export default HomePage
-
-// <Trending />
