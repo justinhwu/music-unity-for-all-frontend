@@ -39,6 +39,8 @@ const userLists = (lists=[], action) => {
     action.payload.image = ''
     action.payload.genre = null
     return [...lists, action.payload]
+    case 'DELETE_PLAYLIST':
+    return action.playlists
     case 'ADD_SONG':
     return  action.playlists
     case 'REMOVE_SONG':

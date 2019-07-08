@@ -1,8 +1,8 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import YoutubeCard from '../components/YoutubeCard'
-import { Button, Segment, Card, Image} from 'semantic-ui-react'
-import {Link} from "react-router-dom";
+import { Button, Segment, Card, Image, Icon} from 'semantic-ui-react'
+import {Link, Redirect, withRouter} from "react-router-dom";
 
 
 class ListPage extends React.Component{
@@ -30,11 +30,44 @@ class ListPage extends React.Component{
     })
   }
 
+  handleDelete = () =>{
+    fetch(`http://localhost:3000/playlists/${this.props.selectedList.id}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify({
+        id: this.props.selectedList.id,
+        user_id: this.props.user.id
+      })
+    })
+    .then(resp => resp.json())
+    .then(playlists => {
+      this.props.deletePlaylist(playlists)
+      this.props.history.push('/mylists')
+    })
+
+  }
+
   render(){
     return(
     <div>
       <Button floated='left' as={Link} to='/mylists'>Go Back</Button>
-      <Button floated='right' as={Link} to='/discover'>Add a Song</Button>
+          <Button animated='fade' floated='right' size='large' as={Link} to='/discover'>
+            <Button.Content visible>
+              <Icon name='plus' />
+            </Button.Content>
+            <Button.Content hidden>Add a Song</Button.Content>
+          </Button>
+        <Button animated='fade' floated='right' size='large' onClick={()=> this.handleDelete()}>
+          <Button.Content visible>
+            <Icon name='delete' />
+          </Button.Content>
+          <Button.Content hidden>Delete List</Button.Content>
+        </Button>
+
+
         <Card centered>
           <Image centered size='medium' src={this.props.selectedList.image? this.props.selectedList.image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaZPd4618kfPOrzfH2Vcmyf6wHO1zpE9IUNkH7xpGuRsn07ytR'} />
           <Card.Content>
@@ -66,8 +99,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchtoProps = (dispatch) => {
   return{
-  removeSong: (playlists, song) => dispatch({type:'REMOVE_SONG', playlists: playlists, song: song})
+  removeSong: (playlists, song) => dispatch({type:'REMOVE_SONG', playlists: playlists, song: song}),
+  deletePlaylist: (playlists) => dispatch({type:'DELETE_PLAYLIST', playlists: playlists})
   }
 }
 
-export default connect(mapStateToProps, mapDispatchtoProps)(ListPage)
+export default connect(mapStateToProps, mapDispatchtoProps)(withRouter(ListPage))
