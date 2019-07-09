@@ -24,7 +24,6 @@ class HomePage extends React.Component{
       <Segment>
        <Trending trendingVideos={this.state.trendingVideos}/>
       </Segment>
-      
     </Segment>
     )
   }

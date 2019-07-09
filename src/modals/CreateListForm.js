@@ -79,7 +79,8 @@ class CreateListForm extends React.Component{
 
               {/*List Name, Image, Genre Inputs*/}
               <Form.Group widths='equal'>
-                <Form.Input value={this.state.name} placeholder='List Name' type='text' label='List Name' name='name' onChange={(event)=>this.handleChange(event)}/>
+                <Form.Input value={this.state.name} placeholder='List Name' type='text' label='List Name' name='name' onChange={(event)=>this.handleChange(event)}
+                  required />
                 <Form.Input value={this.state.image} placeholder='Image' type='text' label='Image' name='image'  onChange={(event)=>this.handleChange(event)}/>
                 <Form.Input value={this.state.genre} placeholder='Genre' type='text' label='Genre' name='genre'  onChange={(event)=>this.handleChange(event)}/>
               </Form.Group>

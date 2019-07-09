@@ -51,10 +51,6 @@ class ListPage extends React.Component{
 
   }
 
-  handleEdit = () => {
-
-  }
-
   render(){
     return(
     <div>
@@ -78,7 +74,7 @@ class ListPage extends React.Component{
         </Card>
       <Segment>
 
-            {this.props.selectedList.songs? this.props.selectedList.songs.map((song, index)=>(
+            {this.props.selectedList.songs.length !==0? this.props.selectedList.songs.map((song, index)=>(
               <YoutubeCard handleRemove={this.handleRemove} key={index+1} result={song} show={true} />
             )):
             <div>

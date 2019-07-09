@@ -36,7 +36,6 @@ const userLists = (lists=[], action) => {
     case 'LOGIN':
     return action.payload.playlists
     case 'ADD_LIST':
-    action.payload.image = ''
     return [...lists, action.payload]
     case 'DELETE_PLAYLIST':
     return action.playlists
