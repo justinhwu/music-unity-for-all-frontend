@@ -2,15 +2,15 @@ import React from 'react'
 import { Button, Header, Icon, Modal, Form, TextArea } from 'semantic-ui-react'
 import {connect} from 'react-redux'
 
-class CreateListForm extends React.Component{
+class EditModal extends React.Component{
 
-  constructor(){
-    super()
+  constructor(props){
+    super(props)
     this.state = {
-      name: '',
-      description: null,
-      genre: null,
-      image: null,
+      name: this.props.list.name,
+      description:  this.props.list.description,
+      genre:  this.props.list.genre,
+      image:  this.props.list.image,
       display: false
     }
   }
@@ -19,9 +19,9 @@ class CreateListForm extends React.Component{
     return(
     <Button animated='fade' floated='right' size='large' onClick={() => this.handleClick()}>
       <Button.Content visible>
-        <Icon name='plus' />
+        <Icon name='edit' />
       </Button.Content>
-      <Button.Content hidden>New List</Button.Content>
+      <Button.Content hidden>Edit List</Button.Content>
     </Button>)
   }
 
@@ -39,8 +39,8 @@ class CreateListForm extends React.Component{
 
   handleSubmit = (event) => {
 
-    fetch('http://localhost:3000/playlists', {
-      method: 'POST',
+    fetch(`http://localhost:3000/playlists/${this.props.list.id}`, {
+      method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json'
@@ -49,19 +49,20 @@ class CreateListForm extends React.Component{
         name: this.state.name,
         description: this.state.description,
         genre: this.state.genre,
-        image: this.state.image,
-        user_id: this.props.user.id
+        image: this.state.image
       })
     })
     .then(resp => resp.json())
-    .then(listObj => (this.props.addList(listObj)))
+    .then(listObj => {
+      this.props.editList(listObj)
+    })
     this.handleClick()
   }
 
   render(){
     return(
       <Modal trigger={this.createButton()} closeIcon onClose={() => this.handleClick()} open={this.state.display}>
-        <Header icon='list alternate outline' content='Create a New List' />
+        <Header icon='edit outline' content='Edit this List' />
           <Modal.Content>
 
             {/*Form that allows user to create list*/}
@@ -81,7 +82,7 @@ class CreateListForm extends React.Component{
 
               {/*Create List Button*/}
               <Button color='green'>
-                <Icon name='checkmark' /> Create List
+                <Icon name='checkmark' /> Edit List
               </Button>
           </Form>
 
@@ -103,9 +104,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) =>{
   return{
-    addList: (list) => dispatch({type:'ADD_LIST', payload: list})
+    editList: (list) => dispatch({type:'UPDATE_LIST', playlists: list})
   }
 }
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(CreateListForm)
+export default connect(mapStateToProps, mapDispatchToProps)(EditModal)

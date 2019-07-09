@@ -51,7 +51,7 @@ const userLists = (lists=[], action) => {
   }
 }
 
-const selectedList = (selectedList=[], action) => {
+const selectedList = (selectedList={}, action) => {
   switch(action.type){
   case 'SELECTED_LIST':
   selectedList = action.payload
@@ -60,7 +60,7 @@ const selectedList = (selectedList=[], action) => {
   selectedList.songs = selectedList.songs.filter((song) => song.id !== action.song)
   return selectedList
   case 'UPDATE_LIST':
-  selectedList = action.playlists.filter((list) => list.id === selectedList.id)
+  selectedList = action.playlists.find((list) => list.id === selectedList.id)
   return selectedList
   default:
   return selectedList

@@ -3,8 +3,9 @@ import {connect} from 'react-redux'
 import YoutubeCard from '../components/YoutubeCard'
 import { Button, Segment, Card, Image, Icon} from 'semantic-ui-react'
 import {Link, Redirect, withRouter} from "react-router-dom";
-import DeleteModal from '../components/DeleteModal'
-import CreateListForm from '../components/CreateListForm'
+import DeleteModal from '../modals/DeleteModal'
+import EditModal from '../modals/EditModal'
+
 class ListPage extends React.Component{
 
   state = {changed: false}
@@ -64,7 +65,7 @@ class ListPage extends React.Component{
             </Button.Content>
             <Button.Content hidden>Add a Song</Button.Content>
           </Button>
-        <CreateListForm edit={true} />
+        <EditModal list={this.props.selectedList}/>
         <DeleteModal handleDelete={this.handleDelete}/>
 
 
@@ -77,7 +78,7 @@ class ListPage extends React.Component{
         </Card>
       <Segment>
 
-            {this.props.selectedList.songs.length!== 0? this.props.selectedList.songs.map((song, index)=>(
+            {this.props.selectedList.songs? this.props.selectedList.songs.map((song, index)=>(
               <YoutubeCard handleRemove={this.handleRemove} key={index+1} result={song} show={true} />
             )):
             <div>

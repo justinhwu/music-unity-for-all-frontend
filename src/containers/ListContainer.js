@@ -2,7 +2,7 @@ import React from 'react'
 import { Card } from 'semantic-ui-react'
 import ListCard from '../components/ListCard'
 import {connect} from 'react-redux'
-import CreateListForm from '../components/CreateListForm'
+import CreateListForm from '../modals/CreateListForm'
 class ListContainer extends React.Component{
   constructor(){
     super()
