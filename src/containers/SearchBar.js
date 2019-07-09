@@ -1,6 +1,6 @@
 import searchYoutube from 'youtube-api-v3-search';
 import React from 'react'
-import { Grid, Form, Input} from 'semantic-ui-react'
+import { Grid, Form, Input, Button, Icon} from 'semantic-ui-react'
 import {connect} from 'react-redux'
 const API_KEY = 'AIzaSyATmQ8K3LV21JRsFhQ-ZRkPFQS5m4eheEE'
 
@@ -44,11 +44,10 @@ class SearchBar extends React.Component{
       videoCategoryId: 10,
       q: `${this.state.searchTerm}`
     }
-    if(event.key === 'Enter'){
+    if(event.key === 'Enter' || event.type=== 'submit'){
         searchYoutube(`${API_KEY}`, options, (error, result) => {
           this.props.results(result.items)
         }
-
       )}
     }
 
@@ -57,8 +56,9 @@ class SearchBar extends React.Component{
     return (
       <Grid>
         <Grid.Column >
-         <Form onKeyDown={(event)=>this.handleSubmit(event)} size='large'>
-           <Input icon='search' placeholder='Search...' onChange={(event)=>this.handleSearchTerm(event)} size='small' style={{width: "750px", display:'center aligned grid'}}/>
+         <Form onSubmit={(event)=>this.handleSubmit(event)} onKeyDown={(event)=>this.handleSubmit(event)} size='large'>
+           <Input placeholder='Search...' onChange={(event)=>this.handleSearchTerm(event)} size='small' style={{width: "750px", display:'center aligned grid'}}/>
+           <Button><Icon name='search'/></Button>
          </Form>
         </Grid.Column>
       </Grid>

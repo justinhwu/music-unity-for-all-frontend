@@ -37,13 +37,14 @@ const userLists = (lists=[], action) => {
     return action.payload.playlists
     case 'ADD_LIST':
     action.payload.image = ''
-    action.payload.genre = null
     return [...lists, action.payload]
     case 'DELETE_PLAYLIST':
     return action.playlists
     case 'ADD_SONG':
     return  action.playlists
     case 'REMOVE_SONG':
+    return action.playlists
+    case 'UPDATE_LIST':
     return action.playlists
     default:
     return lists
@@ -57,6 +58,9 @@ const selectedList = (selectedList=[], action) => {
   return selectedList
   case 'REMOVE_SONG':
   selectedList.songs = selectedList.songs.filter((song) => song.id !== action.song)
+  return selectedList
+  case 'UPDATE_LIST':
+  selectedList = action.playlists.filter((list) => list.id === selectedList.id)
   return selectedList
   default:
   return selectedList

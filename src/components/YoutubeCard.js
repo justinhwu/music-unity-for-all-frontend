@@ -35,7 +35,7 @@ class YoutubeCard extends React.Component {
                     <Button.Content hidden>Remove Song</Button.Content>
                   </Button>
                 </div>
-                :<AddToList show={this.props.show} selection={this.props.result}/>
+                :<AddToList show={this.props.show} selection={this.props.result} edit={this.props.edit}/>
                 }
               </Menu.Item>
             </Menu>

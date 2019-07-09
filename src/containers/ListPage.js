@@ -3,8 +3,8 @@ import {connect} from 'react-redux'
 import YoutubeCard from '../components/YoutubeCard'
 import { Button, Segment, Card, Image, Icon} from 'semantic-ui-react'
 import {Link, Redirect, withRouter} from "react-router-dom";
-
-
+import DeleteModal from '../components/DeleteModal'
+import CreateListForm from '../components/CreateListForm'
 class ListPage extends React.Component{
 
   state = {changed: false}
@@ -50,6 +50,10 @@ class ListPage extends React.Component{
 
   }
 
+  handleEdit = () => {
+
+  }
+
   render(){
     return(
     <div>
@@ -60,12 +64,8 @@ class ListPage extends React.Component{
             </Button.Content>
             <Button.Content hidden>Add a Song</Button.Content>
           </Button>
-        <Button animated='fade' floated='right' size='large' onClick={()=> this.handleDelete()}>
-          <Button.Content visible>
-            <Icon name='delete' />
-          </Button.Content>
-          <Button.Content hidden>Delete List</Button.Content>
-        </Button>
+        <CreateListForm edit={true} />
+        <DeleteModal handleDelete={this.handleDelete}/>
 
 
         <Card centered>
@@ -78,7 +78,7 @@ class ListPage extends React.Component{
       <Segment>
 
             {this.props.selectedList.songs.length!== 0? this.props.selectedList.songs.map((song, index)=>(
-              <YoutubeCard handleRemove={this.handleRemove} key={index+1} result={song} show={true}/>
+              <YoutubeCard handleRemove={this.handleRemove} key={index+1} result={song} show={true} />
             )):
             <div>
               <h2>This list is empty!</h2>

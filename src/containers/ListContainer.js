@@ -22,7 +22,7 @@ class ListContainer extends React.Component{
     return(
       <div>
         <div>
-          <CreateListForm />
+          <CreateListForm edit={false}/>
         </div>
         <Card.Group>
           {this.props.lists.map((playlist)=>(
