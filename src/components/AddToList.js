@@ -75,7 +75,7 @@ class AddToList extends React.Component{
         playlist_ids: this.state.selected,
         username: username,
         name: name,
-        create_time: created_time,
+        created_time: created_time,
         url: url,
         user_id: this.props.user.id
       })
