@@ -39,6 +39,7 @@ class AddToList extends React.Component{
   }
 
   handleSubmit = (event) => {
+    if(this.props.youtube){
     const {videoId, title, publishedAt, channelTitle, description, url} = this.props.selection
     fetch(`http://localhost:3000/addsong`, {
       method: 'POST',
@@ -61,6 +62,29 @@ class AddToList extends React.Component{
     .then(playlists => {
       this.props.addSong(playlists)
     })
+  }
+  else{
+    const {username , url, name, created_time} = this.props.selection
+    fetch(`http://localhost:3000/addmixcloud`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify({
+        playlist_ids: this.state.selected,
+        username: username,
+        name: name,
+        create_time: created_time,
+        url: url,
+        user_id: this.props.user.id
+      })
+    })
+    .then(resp => resp.json())
+    .then(playlists => {
+      this.props.addMixcloud(playlists)
+    })
+  }
     this.handleClick()
   }
 
@@ -108,7 +132,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) =>{
   return{
-    addSong: (playlists) => dispatch({type: 'ADD_SONG', playlists: playlists})
+    addSong: (playlists) => dispatch({type: 'ADD_SONG', playlists: playlists}),
+    addMixcloud: (mixcloud) => dispatch({type: 'ADD_MIXCLOUD', playlists: mixcloud})
   }
 }
 

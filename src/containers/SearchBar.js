@@ -37,24 +37,26 @@ class SearchBar extends React.Component{
   }
 
   handleSubmit = (event) => {
-    /*const options = {
+    const options = {
       part: 'snippet',
       type: 'video',
       maxResults: 5,
       videoCategoryId: 10,
       q: `${this.state.searchTerm}`
     }
-    searchYoutube(`${API_KEY}`, options, (error, result) => {
-    this.props.results(result.items)    )}
-    */
+
     if(event.key === 'Enter' || event.type=== 'submit'){
       let searchTerm = this.state.searchTerm.replace(/\s/g, '+')
-      debugger
-      fetch(`https://api.mixcloud.com/search/?amp=&limit=15&offset=15&q=${searchTerm}&type=cloudcast`
+      searchYoutube(`${API_KEY}`, options, (error, result) => {
+      this.props.results(result.items)
+      fetch(`https://api.mixcloud.com/search/?amp=&limit=2&offset=2&q=${searchTerm}&type=cloudcast`
       )
       .then(resp => resp.json())
-      .then(obj => {debugger})
-        }
+      .then(obj => {
+        this.props.mixcloudResults(obj.data)
+      })
+      })
+      }
 
     }
 
@@ -76,7 +78,8 @@ class SearchBar extends React.Component{
 
 const mapDispatchtoProps = (dispatch) => {
   return{
-    results: (searchResults) => dispatch({type: 'RETURN_RESULTS', payload: searchResults})
+    results: (searchResults) => dispatch({type: 'RETURN_RESULTS', payload: searchResults}),
+    mixcloudResults: (mixcloud) => dispatch({type: 'RETURN_MIXCLOUD', payload: mixcloud})
   }
 }
 

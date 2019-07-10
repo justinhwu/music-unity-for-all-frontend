@@ -18,6 +18,21 @@ const youtubeResults = (searchResults=[], action) => {
   }
 }
 
+const mixcloudResults = (mixcloudResults=[], action) => {
+  switch(action.type){
+    case 'RETURN_MIXCLOUD':
+    mixcloudResults = action.payload.map((item)=> {
+      const {user: {username}, url, name, created_time} = item
+      let new_hash = {username: username, url: url, name: name, created_time: created_time}
+      return new_hash
+      }
+    )
+    return mixcloudResults
+    default:
+    return mixcloudResults
+  }
+}
+
 const userStore = (user=[], action) => {
   switch(action.type){
     case 'LOGIN':
@@ -41,6 +56,8 @@ const userLists = (lists=[], action) => {
     return action.playlists
     case 'ADD_SONG':
     return  action.playlists
+    case 'ADD_MIXCLOUD':
+    return action.playlists
     case 'REMOVE_SONG':
     return action.playlists
     case 'UPDATE_LIST':
@@ -81,7 +98,8 @@ const rootReducer = combineReducers({
   user: userStore,
   lists: userLists,
   selectedList: selectedList,
-  handleTrending: handleTrending
+  handleTrending: handleTrending,
+  mixcloudResults: mixcloudResults
 })
 
 

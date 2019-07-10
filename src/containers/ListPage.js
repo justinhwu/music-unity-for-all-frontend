@@ -1,7 +1,8 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import YoutubeCard from '../components/YoutubeCard'
-import { Button, Segment, Card, Image, Icon} from 'semantic-ui-react'
+import MixcloudCard from '../components/MixcloudCard'
+import { Button, Segment, Card, Image, Icon, Grid} from 'semantic-ui-react'
 import {Link, Redirect, withRouter} from "react-router-dom";
 import DeleteModal from '../modals/DeleteModal'
 import EditModal from '../modals/EditModal'
@@ -72,15 +73,34 @@ class ListPage extends React.Component{
             <Card.Description>{this.props.selectedList.description}</Card.Description>
           </Card.Content>
         </Card>
-      <Segment>
-
-            {this.props.selectedList.songs.length !==0? this.props.selectedList.songs.map((song, index)=>(
-              <YoutubeCard handleRemove={this.handleRemove} key={index+1} result={song} show={true} />
-            )):
-            <div>
-              <h2>This list is empty!</h2>
-            </div>}
-      </Segment>
+        <Segment>
+        <Grid columns='two' divided>
+          <Grid.Column>
+            <h1> Your Added Youtube Videos</h1>
+          <Segment>
+          <Grid.Row>
+              {this.props.selectedList.songs.length === 0? <h3> No Youtube Videos to Display!</h3>:
+                this.props.selectedList.songs((result, index)=>(
+                <YoutubeCard key={index} result={result} show={true} />
+              ))
+              }
+          </Grid.Row>
+          </Segment>
+        </Grid.Column>
+          <Grid.Column>
+            <h1>Your Added Mixcloud Sets</h1>
+          <Segment>
+          <Grid.Row>
+            { this.props.selectedList.mixclouds.length === 0? <h3> No Mixcloud Sets to Display!</h3>:
+              this.props.selectedList.mixclouds.map((result, index)=>(
+              <MixcloudCard key={index} mixcloudresults={result} show={true} />
+            ))
+            }
+          </Grid.Row>
+          </Segment>
+        </Grid.Column>
+        </Grid>
+        </Segment>
       </div>
     )
   }
