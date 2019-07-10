@@ -47,15 +47,15 @@ class SearchBar extends React.Component{
 
     if(event.key === 'Enter' || event.type=== 'submit'){
       let searchTerm = this.state.searchTerm.replace(/\s/g, '+')
-      // searchYoutube(`${API_KEY}`, options, (error, result) => {
-      // this.props.results(result.items)
+      searchYoutube(`${API_KEY}`, options, (error, result) => {
+      this.props.results(result.items)
       fetch(`https://api.mixcloud.com/search/?amp=&limit=10&offset=10&q=${searchTerm}&type=cloudcast`
       )
       .then(resp => resp.json())
       .then(obj => {
         this.props.mixcloudResults(obj.data)
       })
-      // })
+      })
       }
 
     }

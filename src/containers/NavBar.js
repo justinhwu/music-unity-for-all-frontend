@@ -1,6 +1,6 @@
 
 import React from 'react'
-import { Menu} from 'semantic-ui-react'
+import { Menu, Container} from 'semantic-ui-react'
 import {Link} from "react-router-dom";
 import {connect} from 'react-redux'
 
@@ -21,24 +21,30 @@ class NavBar extends React.Component{
   render(){
     const { activeItem } = this.state
     return(
-          <Menu pointing>
+          <Menu pointing inverted>
             <Menu.Item
               as={Link} to='/home'
               name='home'
               active={activeItem === 'home'}
               onClick={this.handleItemClick}
+              icon='home'
+              labelPosition='left'
               />
             <Menu.Item
               as={Link} to='/mylists'
               name='mylists'
               active={activeItem === 'mylists'}
               onClick={this.handleItemClick}
+              icon='list layout'
+              labelPostion='left'
               />
             <Menu.Item
               as={Link} to='/discover'
               name='discover'
               active={activeItem === 'discover'}
               onClick={this.handleItemClick}
+              icon='search'
+              labelPostion='left'
             />
           {/*}<Menu.Item
               as={Link} to='/songs'
@@ -51,6 +57,8 @@ class NavBar extends React.Component{
             name='logout'
             active={activeItem==='logout'}
             onClick={() => this.handleLogOut()}
+            icon='log out'
+            labelPosition='left'
             />
         </Menu.Menu>
           </Menu>

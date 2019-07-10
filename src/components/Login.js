@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Form, Grid, Header, Message, Segment } from 'semantic-ui-react'
+import { Button, Form, Grid, Header, Message, Segment, Image } from 'semantic-ui-react'
 import {connect} from 'react-redux'
 import { Redirect} from "react-router-dom";
 
@@ -51,10 +51,12 @@ class Login extends React.Component{
       return <Redirect to='/home'/>
     }
     return(
+    <div  style={{backgroundImage: `url(${"/logo_transparent.png"})`}}>
       <Grid textAlign='center' style={{ height: '75vh' }} verticalAlign='middle' >
         <Grid.Column style={{ maxWidth: 450 }}>
+          <Image src='/logo_transparent.png' inline height='250' width='250' centered verticalALign/>
           <Header as='h2' color='teal' textAlign='center'>
-            Log-in to your account
+              Log-in to your account
           </Header>
           <Form size='large' onSubmit={(event) => this.handleSubmit(event)} onChange={(event) => this.handleChange(event)}>
             <Segment stacked>
@@ -78,7 +80,7 @@ class Login extends React.Component{
           </Message>
         </Grid.Column>
       </Grid>
-
+    </div>
     )
   }
 

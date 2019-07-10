@@ -8,9 +8,9 @@ class ResultsContainer extends React.Component{
 
   render(){
     return(
-      <Grid columns='two' divided textAlign='center'>
-        <Grid.Column textAlign='center'>
-          <h1> YouTube Results</h1>
+      <Grid columns='two' divided textAlign='center' verticalAlign>
+        <Grid.Column textAlign='center' verticalAlign>
+          <Header as='h1' textAlign='center'> YouTube Results</Header>
         <Segment className='ui compact segment' textAlign='center'>
         <Grid.Row textAlign='center'>
             { this.props.results.length === 0? <Header as='h3' textAlign='center'> No Youtube Results to Display!</Header>:
@@ -21,10 +21,10 @@ class ResultsContainer extends React.Component{
         </Grid.Row>
         </Segment>
       </Grid.Column>
-        <Grid.Column textAlign='center'>
-          <h1>MixCloud Results</h1>
+        <Grid.Column textAlign='center' verticalAlign>
+          <Header as='h1' textAlign='center'>MixCloud Results</Header>
         <Segment className='ui compact segment' textAlign='center'>
-        <Grid.Row textAlign='center'>
+        <Grid.Row textAlign='center' verticalAlign>
           { this.props.mixcloud.length === 0? <h3> No Mixcloud Results to Display!</h3>:
             this.props.mixcloud.map((result, index)=>(
             <MixcloudCard key={index} mixcloudresults={result} show={false} />
