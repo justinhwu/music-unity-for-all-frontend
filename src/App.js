@@ -8,11 +8,12 @@ import Discover from './containers/Discover'
 import HomePage from './containers/HomePage'
 import NavBar from './containers/NavBar'
 import ListPage from './containers/ListPage'
+import SongContainer from './containers/SongContainer'
 const API_KEY = 'AIzaSyATmQ8K3LV21JRsFhQ-ZRkPFQS5m4eheEE'
 
 class App extends React.Component{
 
-   /*componentDidMount(){
+   componentDidMount(){
     fetch(`https://www.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&maxResults=10&regionCode=US&videoCategoryId=10&key=${API_KEY}`)
     .then(resp => resp.json())
     .then(songs => {
@@ -23,7 +24,7 @@ class App extends React.Component{
           })
       this.props.trendingVideos(songs.items)
     })
-  }*/
+  }
 
 
   render(){
@@ -32,6 +33,7 @@ class App extends React.Component{
         {this.props.user.length !==0?
           (<div>
             <NavBar />
+            {/*}<Route exact path='/songs' component={SongContainer}/>*/}
             <Route exact path='/mylists' component={ListContainer}/>
             <Route exact path='/discover' component={Discover}/>
             <Route exact path='/home' component={HomePage}/>

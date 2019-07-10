@@ -75,7 +75,7 @@ class ListPage extends React.Component{
 
   render(){
     return(
-    <div>
+    <div >
       <Button floated='left' as={Link} to='/mylists'>Go Back</Button>
           <Button animated='fade' floated='right' size='large' as={Link} to='/discover'>
             <Button.Content visible>
@@ -95,11 +95,11 @@ class ListPage extends React.Component{
           </Card.Content>
         </Card>
         <Segment className='ui compact segment' textAlign='center'>
-        <Grid columns='two' divided>
-          <Grid.Column>
+        <Grid columns='two' divided centered>
+          <Grid.Column textAlign='center' centered>
             <h1> Your Added Youtube Videos</h1>
           <Segment>
-          <Grid.Row>
+          <Grid.Row textAlign='center' centered>
               {this.props.selectedList.songs.length === 0? <h3> No Youtube Videos to Display!</h3>:
                 this.props.selectedList.songs.map((result, index)=>(
                 <YoutubeCard key={index} result={result} show={true} handleRemove={this.handleRemove}/>
@@ -108,10 +108,10 @@ class ListPage extends React.Component{
           </Grid.Row>
           </Segment>
         </Grid.Column>
-          <Grid.Column>
+          <Grid.Column centered>
             <h1>Your Added Mixcloud Sets</h1>
           <Segment className='ui compact segment' textAlign='center'>
-          <Grid.Row>
+          <Grid.Row centered>
             { this.props.selectedList.mixclouds.length === 0? <h3> No Mixcloud Sets to Display!</h3>:
               this.props.selectedList.mixclouds.map((result, index)=>(
               <MixcloudCard key={index} mixcloudresults={result} show={true} handleRemove={this.removeMix}/>

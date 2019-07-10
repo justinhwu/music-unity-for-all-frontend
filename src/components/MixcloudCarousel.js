@@ -8,6 +8,7 @@ import {connect} from 'react-redux'
 
 class Trending extends React.Component{
 
+
   render(){
   return(
     <div
@@ -62,8 +63,8 @@ class Trending extends React.Component{
         slidesToSlide={1}
         swipeable
       >
-      {this.props.trending.map((video, index)=>
-        <YoutubeCard key={index+1} result={video} show={false}/>
+      {this.props.mixcloud.map((video, index)=>
+        <MixcloudCard key={index+1} mixcloudresults={video} show={false}/>
       )}
 
     </Carousel>

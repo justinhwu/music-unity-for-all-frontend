@@ -53,7 +53,6 @@ class SearchBar extends React.Component{
       )
       .then(resp => resp.json())
       .then(obj => {
-        debugger
         this.props.mixcloudResults(obj.data)
       })
       // })
@@ -65,7 +64,7 @@ class SearchBar extends React.Component{
   render() {
     return (
       <Grid>
-        <Grid.Column >
+        <Grid.Column textAlign='center'>
          <Form onSubmit={(event)=>this.handleSubmit(event)} onKeyDown={(event)=>this.handleSubmit(event)} size='large'>
            <Input placeholder='Search...' onChange={(event)=>this.handleSearchTerm(event)} size='small' style={{width: "750px", display:'center aligned grid'}}/>
            <Button><Icon name='search'/></Button>

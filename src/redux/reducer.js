@@ -79,6 +79,7 @@ const selectedList = (selectedList={}, action) => {
   return selectedList
   case 'REMOVE_MIX':
   selectedList.mixclouds = selectedList.mixclouds.filter((mix) => mix.id !== action.mix)
+  return selectedList
   case 'UPDATE_LIST':
   selectedList = action.playlists.find((list) => list.id === selectedList.id)
   return selectedList
@@ -87,6 +88,25 @@ const selectedList = (selectedList={}, action) => {
   }
 
 }
+
+const getMixcloud = (sets=[], action) => {
+  switch(action.type){
+    case 'GET_SETS':
+    return action.sets
+    default:
+    return sets
+  }
+}
+
+const getYoutube = (songs=[], action) => {
+  switch(action.type){
+    case 'GET_SONGS':
+    return action.songs
+    default:
+    return songs
+  }
+}
+
 
 const handleTrending = (trending=[], action) => {
   switch(action.type){
@@ -103,7 +123,9 @@ const rootReducer = combineReducers({
   lists: userLists,
   selectedList: selectedList,
   handleTrending: handleTrending,
-  mixcloudResults: mixcloudResults
+  mixcloudResults: mixcloudResults,
+  getYoutube: getYoutube,
+  getMixcloud: getMixcloud
 })
 
 

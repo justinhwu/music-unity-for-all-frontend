@@ -22,7 +22,7 @@ class HomePage extends React.Component{
            Most Popular Music Videos on Youtube
          </Header>
       <Segment>
-       <Trending trendingVideos={this.state.trendingVideos}/>
+       <Trending isyoutube={true} home={true}/>
       </Segment>
     </Segment>
     )
