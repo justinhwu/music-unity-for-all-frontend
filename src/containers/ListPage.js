@@ -46,7 +46,7 @@ class ListPage extends React.Component{
     })
     .then(resp => resp.json())
     .then(playlists => {
-      this.props.removeSong(playlists, mix.id)
+      this.props.removeMix(playlists, mix.id)
       this.setState({
         changed: true
       })
@@ -94,7 +94,7 @@ class ListPage extends React.Component{
             <Card.Description>{this.props.selectedList.description}</Card.Description>
           </Card.Content>
         </Card>
-        <Segment>
+        <Segment className='ui compact segment' textAlign='center'>
         <Grid columns='two' divided>
           <Grid.Column>
             <h1> Your Added Youtube Videos</h1>
@@ -110,7 +110,7 @@ class ListPage extends React.Component{
         </Grid.Column>
           <Grid.Column>
             <h1>Your Added Mixcloud Sets</h1>
-          <Segment>
+          <Segment className='ui compact segment' textAlign='center'>
           <Grid.Row>
             { this.props.selectedList.mixclouds.length === 0? <h3> No Mixcloud Sets to Display!</h3>:
               this.props.selectedList.mixclouds.map((result, index)=>(

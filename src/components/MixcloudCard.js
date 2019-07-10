@@ -7,6 +7,7 @@ class MixcloudCard extends React.Component {
 
   render(){
   const {username , url, name, created_time} = this.props.mixcloudresults
+  
   return(
     <Card>
        <div className='player-wrapper'>

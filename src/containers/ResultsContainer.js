@@ -11,7 +11,7 @@ class ResultsContainer extends React.Component{
       <Grid columns='two' divided>
         <Grid.Column>
           <h1> YouTube Results</h1>
-        <Segment>
+        <Segment className='ui compact segment'>
         <Grid.Row>
             { this.props.results.length === 0? <h3> No Youtube Results to Display!</h3>:
               this.props.results.map((result, index)=>(
@@ -23,7 +23,7 @@ class ResultsContainer extends React.Component{
       </Grid.Column>
         <Grid.Column>
           <h1>MixCloud Results</h1>
-        <Segment>
+        <Segment className='ui compact segment'>
         <Grid.Row>
           { this.props.mixcloud.length === 0? <h3> No Mixcloud Results to Display!</h3>:
             this.props.mixcloud.map((result, index)=>(
