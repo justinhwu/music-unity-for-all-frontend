@@ -13,11 +13,11 @@ class ResultsContainer extends React.Component{
           <h1> YouTube Results</h1>
         <Segment>
         <Grid.Row>
-            {/* this.props.results.length === 0? <h3> No Youtube Results to Display!</h3>:
+            { this.props.results.length === 0? <h3> No Youtube Results to Display!</h3>:
               this.props.results.map((result, index)=>(
               <YoutubeCard key={index} result={result} show={false} />
             ))
-            */}
+            }
         </Grid.Row>
         </Segment>
       </Grid.Column>

@@ -31,7 +31,7 @@ class MixcloudCard extends React.Component {
           <Menu.Item>
             {this.props.show ?
             <div>
-              <Button animated='fade' floated='right' size='large' onClick={() => this.props.handleRemove(this.props.mixcloudResults)}>
+              <Button animated='fade' floated='right' size='large' onClick={() => this.props.handleRemove(this.props.mixcloudresults)}>
                 <Button.Content visible>
                   <Icon name='remove' />
                 </Button.Content>

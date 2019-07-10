@@ -8,22 +8,29 @@ const ListCard = (props) => {
 
   const songCount = () => {
     let sum = 0
-    if(songs===true && mixclouds===true){
+    if(songs.length!==0 && mixclouds.length!==0){
       sum = songs.length + mixclouds.length
     }
-    else if(songs===false && mixclouds===false){
+    else if(songs.length!==0){
+      sum = songs.length
     }
+    else if(mixclouds.length!==0){
+      sum = mixclouds.length
+    }
+    return sum
   }
 
   return(
-    <Link className='item' to={`/mylists/${.id}`}>
-    <Card onClick={() => (props.select_list(props.playlist))} id={.id}>
-      <Image style={{display: 'block'}} src={.image? .image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaZPd4618kfPOrzfH2Vcmyf6wHO1zpE9IUNkH7xpGuRsn07ytR'} size='medium'/>
+    <Link className='item' to={`/mylists/${id}`}>
+    <Card onClick={() => (props.select_list(props.playlist))} id={id}>
+      <Image style={{display: 'block'}} src={image? image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaZPd4618kfPOrzfH2Vcmyf6wHO1zpE9IUNkH7xpGuRsn07ytR'} size='medium'/>
       <Card.Content>
-        <Card.Header>{.name}</Card.Header>
+        <Card.Header>{name}</Card.Header>
         <Card.Description>
-        {.description}<br></br>
-      <b>Total Songs:</b> {.songs? .songs.length: 0}<br></br>
+        {description}<br></br>
+      <b>Total Songs:</b> {songCount()}<br></br>
+      <b>Total Youtube Videos:</b> {songs.length!==0? songs.length: 0}<br></br>
+      <b>Total Mixcloud Sets:</b> {mixclouds.length!==0? mixclouds.length: 0}
 
         </Card.Description>
       </Card.Content>

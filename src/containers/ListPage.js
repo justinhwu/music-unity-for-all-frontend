@@ -32,6 +32,27 @@ class ListPage extends React.Component{
     })
   }
 
+  removeMix = (mix) => {
+    fetch('http://localhost:3000/removemix', {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        playlist_ids: this.props.selectedList.id,
+        mixcloud_id: mix.id,
+        user_id: this.props.user.id
+      })
+    })
+    .then(resp => resp.json())
+    .then(playlists => {
+      this.props.removeSong(playlists, mix.id)
+      this.setState({
+        changed: true
+      })
+    })
+  }
+
   handleDelete = () =>{
     fetch(`http://localhost:3000/playlists/${this.props.selectedList.id}`, {
       method: 'DELETE',
@@ -80,8 +101,8 @@ class ListPage extends React.Component{
           <Segment>
           <Grid.Row>
               {this.props.selectedList.songs.length === 0? <h3> No Youtube Videos to Display!</h3>:
-                this.props.selectedList.songs((result, index)=>(
-                <YoutubeCard key={index} result={result} show={true} />
+                this.props.selectedList.songs.map((result, index)=>(
+                <YoutubeCard key={index} result={result} show={true} handleRemove={this.handleRemove}/>
               ))
               }
           </Grid.Row>
@@ -93,7 +114,7 @@ class ListPage extends React.Component{
           <Grid.Row>
             { this.props.selectedList.mixclouds.length === 0? <h3> No Mixcloud Sets to Display!</h3>:
               this.props.selectedList.mixclouds.map((result, index)=>(
-              <MixcloudCard key={index} mixcloudresults={result} show={true} />
+              <MixcloudCard key={index} mixcloudresults={result} show={true} handleRemove={this.removeMix}/>
             ))
             }
           </Grid.Row>
@@ -117,7 +138,8 @@ const mapStateToProps = (state) => {
 const mapDispatchtoProps = (dispatch) => {
   return{
   removeSong: (playlists, song) => dispatch({type:'REMOVE_SONG', playlists: playlists, song: song}),
-  deletePlaylist: (playlists) => dispatch({type:'DELETE_PLAYLIST', playlists: playlists})
+  deletePlaylist: (playlists) => dispatch({type:'DELETE_PLAYLIST', playlists: playlists}),
+  removeMix: (playlists, mix) => dispatch({type:'REMOVE_MIX', playlists: playlists, mix: mix})
   }
 }
 

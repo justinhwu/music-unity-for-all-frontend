@@ -40,7 +40,7 @@ class SearchBar extends React.Component{
     const options = {
       part: 'snippet',
       type: 'video',
-      maxResults: 5,
+      maxResults: 10,
       videoCategoryId: 10,
       q: `${this.state.searchTerm}`
     }
@@ -49,7 +49,7 @@ class SearchBar extends React.Component{
       let searchTerm = this.state.searchTerm.replace(/\s/g, '+')
       searchYoutube(`${API_KEY}`, options, (error, result) => {
       this.props.results(result.items)
-      fetch(`https://api.mixcloud.com/search/?amp=&limit=2&offset=2&q=${searchTerm}&type=cloudcast`
+      fetch(`https://api.mixcloud.com/search/?amp=&limit=10&offset=10&q=${searchTerm}&type=cloudcast`
       )
       .then(resp => resp.json())
       .then(obj => {

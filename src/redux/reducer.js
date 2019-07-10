@@ -60,6 +60,8 @@ const userLists = (lists=[], action) => {
     return action.playlists
     case 'REMOVE_SONG':
     return action.playlists
+    case 'REMOVE_MIX':
+    return action.playlists
     case 'UPDATE_LIST':
     return action.playlists
     default:
@@ -75,6 +77,8 @@ const selectedList = (selectedList={}, action) => {
   case 'REMOVE_SONG':
   selectedList.songs = selectedList.songs.filter((song) => song.id !== action.song)
   return selectedList
+  case 'REMOVE_MIX':
+  selectedList.mixclouds = selectedList.mixclouds.filter((mix) => mix.id !== action.mix)
   case 'UPDATE_LIST':
   selectedList = action.playlists.find((list) => list.id === selectedList.id)
   return selectedList
