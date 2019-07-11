@@ -1,5 +1,5 @@
 import React from 'react'
-import {Grid, Segment, Header} from 'semantic-ui-react'
+import {Grid, Segment, Icon, Card, Header} from 'semantic-ui-react'
 import {connect} from 'react-redux'
 import YoutubeCard from '../components/YoutubeCard'
 import MixcloudCard from '../components/MixcloudCard'
@@ -10,28 +10,28 @@ class ResultsContainer extends React.Component{
     return(
       <Grid columns='two' divided textAlign='center' verticalAlign>
         <Grid.Column textAlign='center' verticalAlign>
-          <Header as='h1' textAlign='center'> YouTube Results</Header>
-        <Segment className='ui compact segment' textAlign='center'>
-        <Grid.Row textAlign='center'>
-            { this.props.results.length === 0? <Header as='h3' textAlign='center'> No Youtube Results to Display!</Header>:
+          <Icon name='youtube play' size='massive'/>
+            {this.props.results.length ===0? <Header as='h3' textAlign='center'> No Youtube Results to Display!</Header>: null}
+            <Card.Group>
+            { this.props.results.length === 0? null :
               this.props.results.map((result, index)=>(
               <YoutubeCard key={index} result={result} show={false} />
             ))
             }
-        </Grid.Row>
-        </Segment>
+          </Card.Group>
       </Grid.Column>
         <Grid.Column textAlign='center' verticalAlign>
-          <Header as='h1' textAlign='center'>MixCloud Results</Header>
-        <Segment className='ui compact segment' textAlign='center'>
-        <Grid.Row textAlign='center' verticalAlign>
-          { this.props.mixcloud.length === 0? <h3> No Mixcloud Results to Display!</h3>:
-            this.props.mixcloud.map((result, index)=>(
+          <Icon name='mixcloud' size='massive'/>
+          {this.props.mixcloud.length ===0? <Header as='h3' textAlign='center'> No Mixcloud Results to Display!</Header>: null}
+          <Card.Group>
+          { this.props.mixcloud.length === 0? null :
+            this.props.mixcloud.map((result, index)=>{
+              return(
             <MixcloudCard key={index} mixcloudresults={result} show={false} />
-          ))
+            )
+            })
           }
-        </Grid.Row>
-        </Segment>
+          </Card.Group>
       </Grid.Column>
       </Grid>
     )

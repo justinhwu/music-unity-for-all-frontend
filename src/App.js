@@ -13,7 +13,8 @@ const API_KEY = 'AIzaSyATmQ8K3LV21JRsFhQ-ZRkPFQS5m4eheEE'
 
 class App extends React.Component{
 
-   /*componentDidMount(){
+  /*
+   componentDidMount(){
     fetch(`https://www.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&maxResults=10&regionCode=US&videoCategoryId=10&key=${API_KEY}`)
     .then(resp => resp.json())
     .then(songs => {
@@ -24,8 +25,8 @@ class App extends React.Component{
           })
       this.props.trendingVideos(songs.items)
     })
-  }*/
-
+  }
+  */
 
   render(){
     return (

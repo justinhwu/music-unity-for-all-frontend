@@ -16,15 +16,15 @@ class HomePage extends React.Component{
 
   render(){
     return(
-      <Segment>
-          <Header as='h2' icon>
-           <Icon name='hotjar' />
+    <div >
+          <Header as='h2' icon style={{margin: 'auto'}}>
+           <Icon name='hotjar' style={{margin: 'auto'}}/>
            Most Popular Music Videos on Youtube
          </Header>
       <Segment>
        <Trending isyoutube={true} home={true}/>
       </Segment>
-    </Segment>
+  </div>
     )
   }
 

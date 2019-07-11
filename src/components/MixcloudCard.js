@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card, Icon, Menu, Button, Embed} from 'semantic-ui-react'
+import { Card, Icon, Menu, Button, Embed, Popup} from 'semantic-ui-react'
 import AddToList from './AddToList'
 import {connect} from 'react-redux'
 import MixCloudPlayer from 'react-player'
@@ -7,15 +7,15 @@ class MixcloudCard extends React.Component {
 
   render(){
   const {username , url, name, created_time} = this.props.mixcloudresults
-  
+
   return(
-    <Card>
+    <Card className='item' raised >
        <div className='player-wrapper'>
         <MixCloudPlayer url={url} width='100%'
             height='100%'/>
       </div>
       <Card.Content>
-          <Card.Header>{name}</Card.Header>
+          <Card.Header style={{margin: 'auto'}} textAlign='center'>{name}</Card.Header>
           <Card.Meta>
             <span className='date'>Published: {created_time}</span>
           </Card.Meta>
@@ -45,6 +45,7 @@ class MixcloudCard extends React.Component {
         </Menu>
       </Card.Content>
     </Card>
+
     )
   }
 }

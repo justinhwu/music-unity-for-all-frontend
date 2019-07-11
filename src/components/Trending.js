@@ -20,7 +20,7 @@ class Trending extends React.Component{
         additionalTransfrom={0}
         arrows
         autoPlay
-        autoPlaySpeed={1000}
+        autoPlaySpeed={2000}
         centerMode={false}
         containerClass="container-with-dots"
         dotListClass=""

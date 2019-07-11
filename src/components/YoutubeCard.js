@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card, Icon, Menu, Button, Embed} from 'semantic-ui-react'
+import { Card, Icon, Menu, Button, Embed, Popup} from 'semantic-ui-react'
 import AddToList from './AddToList'
 import {connect} from 'react-redux'
 class YoutubeCard extends React.Component {
@@ -7,14 +7,10 @@ class YoutubeCard extends React.Component {
   render(){
   const {videoId, title, publishedAt, channelTitle, description, url} = this.props.result
   return(
-
-      <Card id={`card-${videoId}`}>
+      <Card id={`card-${videoId}`} raised className='item'>
         <Embed id={videoId} placeholder={url} source='youtube' />
         <Card.Content>
             <Card.Header>{title}</Card.Header>
-            <Card.Meta>
-              <span className='date'>Published: {publishedAt}</span>
-            </Card.Meta>
             <Card.Description>
             <b>Channel Title:</b> {channelTitle} <br></br>
             </Card.Description>
@@ -42,7 +38,6 @@ class YoutubeCard extends React.Component {
             </Menu>
           </Card.Content>
         </Card>
-
 
     )
   }

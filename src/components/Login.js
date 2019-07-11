@@ -51,7 +51,7 @@ class Login extends React.Component{
       return <Redirect to='/home'/>
     }
     return(
-    <div  style={{backgroundImage: `url(${"/logo_transparent.png"})`}}>
+    <div style={{backgroundImage: `url(${"/logo_transparent.png"})`}}>
       <Grid textAlign='center' style={{ height: '75vh' }} verticalAlign='middle' >
         <Grid.Column style={{ maxWidth: 450 }}>
           <Image src='/logo_transparent.png' inline height='250' width='250' centered verticalALign/>
@@ -75,9 +75,6 @@ class Login extends React.Component{
               </Button>
             </Segment>
           </Form>
-          <Message>
-            Don't have an account? <Button>Sign Up</Button>
-          </Message>
         </Grid.Column>
       </Grid>
     </div>

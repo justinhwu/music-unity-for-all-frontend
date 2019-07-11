@@ -1,6 +1,6 @@
 
 import React from 'react'
-import { Menu, Container} from 'semantic-ui-react'
+import { Menu, Container, Image} from 'semantic-ui-react'
 import {Link} from "react-router-dom";
 import {connect} from 'react-redux'
 
@@ -21,7 +21,8 @@ class NavBar extends React.Component{
   render(){
     const { activeItem } = this.state
     return(
-          <Menu pointing inverted>
+          <Menu pointing color='blue' inverted>
+            <Menu.Menu>
             <Menu.Item
               as={Link} to='/home'
               name='home'
@@ -46,12 +47,16 @@ class NavBar extends React.Component{
               icon='search'
               labelPostion='left'
             />
+          </Menu.Menu>
+          
+          <Image src='/logo_transparent.png' centered size='tiny'/>
           {/*}<Menu.Item
               as={Link} to='/songs'
               name='songs'
               active={activeItem === 'songs'}
               onClick={this.handleItemClick}
             />*/}
+
           <Menu.Menu position='right'>
           <Menu.Item
             name='logout'
