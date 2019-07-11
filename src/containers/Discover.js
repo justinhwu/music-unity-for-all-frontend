@@ -8,9 +8,7 @@ class Discover extends React.Component{
   render(){
     return(
       <div>
-        <Segment>
         <SearchBar />
-        </Segment>
         <Segment>
         <ResultsContainer />
         </Segment>

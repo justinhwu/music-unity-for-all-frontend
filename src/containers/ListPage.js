@@ -89,7 +89,7 @@ class ListPage extends React.Component{
 
         <Card centered>
           <Image centered size='medium' src={this.props.selectedList.image? this.props.selectedList.image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaZPd4618kfPOrzfH2Vcmyf6wHO1zpE9IUNkH7xpGuRsn07ytR'} />
-          <Card.Content>
+          <Card.Content textAlign='center'>
             <Card.Header as='h2' textAlign='center'>{this.props.selectedList.name}</Card.Header>
             <Card.Description>{this.props.selectedList.description}</Card.Description>
           </Card.Content>
@@ -115,8 +115,8 @@ class ListPage extends React.Component{
         </Grid.Column>
           <Grid.Column centered textAlign='center'>
             <Icon name='mixcloud' size='massive'/>
-          <Segment className='ui compact segment' textAlign='center'>
-          <Grid.Row centered>
+          <Segment className='ui compact segment' textAlign='center' style={{margin: 'auto'}}>
+          <Grid.Row centered textAlign='center'>
             {this.props.selectedList.mixclouds.length ===0? <Header as='h3' textAlign='center'> You have no Mixcloud sets on this list!</Header>: null}
             <Card.Group>
             { this.props.selectedList.mixclouds.length === 0? null:

@@ -16,9 +16,6 @@ class MixcloudCard extends React.Component {
       </div>
       <Card.Content>
           <Card.Header style={{margin: 'auto'}} textAlign='center'>{name}</Card.Header>
-          <Card.Meta>
-            <span className='date'>Published: {created_time}</span>
-          </Card.Meta>
           <Card.Description>
           <b>Channel Title:</b> {username} <br></br>
           </Card.Description>
