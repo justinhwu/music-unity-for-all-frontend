@@ -48,14 +48,14 @@ class NavBar extends React.Component{
               labelPostion='left'
             />
           </Menu.Menu>
-          
+
           <Image src='/logo_transparent.png' centered size='tiny'/>
-          {/*}<Menu.Item
+          <Menu.Item
               as={Link} to='/songs'
               name='songs'
               active={activeItem === 'songs'}
               onClick={this.handleItemClick}
-            />*/}
+            />
 
           <Menu.Menu position='right'>
           <Menu.Item
