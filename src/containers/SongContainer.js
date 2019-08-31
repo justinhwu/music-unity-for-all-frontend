@@ -21,10 +21,12 @@ class SongContainer extends React.Component{
   render(){
     return(
       <Segment>
-          <div>
-            {/*<MixcloudCarousel isyoutube={true} home={false}/>*/}
+        <Segment>
+            <MixcloudCarousel isyoutube={true} home={false}/>
+        </Segment>
+        <Segment>
             <YoutubeCarousel isyoutube={false} home={false}/>
-          </div>
+        </Segment>
       </Segment>
     )
   }
