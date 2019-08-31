@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card } from 'semantic-ui-react'
+import { Card, Header} from 'semantic-ui-react'
 import ListCard from '../components/ListCard'
 import {connect} from 'react-redux'
 import { Button, Segment, Image, Icon, Grid} from 'semantic-ui-react'
@@ -22,10 +22,23 @@ class SongContainer extends React.Component{
     return(
       <Segment>
         <Segment>
+          <Header as='h2' icon style={{margin: 'auto'}}>
+           <Icon name='mixcloud' style={{margin: 'auto'}}/>
+           Your MixCloud Songs
+         </Header>
+        <Segment>
             <MixcloudCarousel isyoutube={true} home={false}/>
         </Segment>
+        </Segment>
+
         <Segment>
-            <YoutubeCarousel isyoutube={false} home={false}/>
+          <Header as='h2' icon style={{margin: 'auto'}}>
+           <Icon name='youtube play' style={{margin: 'auto'}}/>
+           Your Youtube Songs
+         </Header>
+         <Segment>
+             <YoutubeCarousel isyoutube={false} home={false}/>
+         </Segment>
         </Segment>
       </Segment>
     )
