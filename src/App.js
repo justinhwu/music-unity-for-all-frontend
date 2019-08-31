@@ -34,7 +34,7 @@ class App extends React.Component{
         {this.props.user.length !==0?
           (<div>
             <NavBar />
-            {/*}<Route exact path='/songs' component={SongContainer}/>*/}
+            <Route exact path='/songs' component={SongContainer}/>
             <Route exact path='/mylists' component={ListContainer}/>
             <Route exact path='/discover' component={Discover}/>
             <Route exact path='/home' component={HomePage}/>

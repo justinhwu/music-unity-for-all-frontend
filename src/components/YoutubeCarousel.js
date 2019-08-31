@@ -6,10 +6,11 @@ import {Card} from 'semantic-ui-react'
 import "react-multi-carousel/lib/styles.css"
 import {connect} from 'react-redux'
 
-class Trending extends React.Component{
+class YoutubeCarousel extends React.Component{
 
 
   render(){
+    debugger
   return(
     <div
       style={{
@@ -78,12 +79,10 @@ class Trending extends React.Component{
 
 const mapStateToProps = (state) => {
   return{
-    trending: state.handleTrending,
-    youtube: state.getYoutube,
-    mixcloud: state.getMixcloud
+    youtube: state.getYoutube
   }
 }
 
 
 
-export default connect(mapStateToProps)(Trending)
+export default connect(mapStateToProps)(YoutubeCarousel)

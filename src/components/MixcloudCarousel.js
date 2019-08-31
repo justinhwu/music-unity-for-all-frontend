@@ -6,7 +6,7 @@ import {Card} from 'semantic-ui-react'
 import "react-multi-carousel/lib/styles.css"
 import {connect} from 'react-redux'
 
-class Trending extends React.Component{
+class MixcloudCarousel extends React.Component{
 
 
   render(){
@@ -76,12 +76,10 @@ class Trending extends React.Component{
 
 const mapStateToProps = (state) => {
   return{
-    trending: state.handleTrending,
-    youtube: state.getYoutube,
     mixcloud: state.getMixcloud
   }
 }
 
 
 
-export default connect(mapStateToProps)(Trending)
+export default connect(mapStateToProps)(MixcloudCarousel)

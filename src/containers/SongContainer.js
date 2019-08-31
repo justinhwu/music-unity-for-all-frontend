@@ -7,7 +7,6 @@ import YoutubeCarousel from '../components/YoutubeCarousel'
 import MixcloudCarousel from '../components/MixcloudCarousel'
 class SongContainer extends React.Component{
 
-  state={didLoad: false}
 
   componentDidMount(){
     fetch(`http://localhost:3000/getSongs/${this.props.user.id}`)
@@ -22,13 +21,10 @@ class SongContainer extends React.Component{
   render(){
     return(
       <Segment>
-        {this.state.didLoad?
           <div>
-            <MixcloudCarousel isyoutube={true} home={false}/>
+            {/*<MixcloudCarousel isyoutube={true} home={false}/>*/}
             <YoutubeCarousel isyoutube={false} home={false}/>
-          </div>:
-          null
-        }
+          </div>
       </Segment>
     )
   }

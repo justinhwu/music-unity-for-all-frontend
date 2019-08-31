@@ -47,15 +47,15 @@ class NavBar extends React.Component{
               icon='search'
               labelPostion='left'
             />
+            <Menu.Item
+                as={Link} to='/songs'
+                name='songs'
+                active={activeItem === 'songs'}
+                onClick={this.handleItemClick}
+              />
           </Menu.Menu>
 
           <Image src='/logo_transparent.png' centered size='tiny'/>
-          <Menu.Item
-              as={Link} to='/songs'
-              name='songs'
-              active={activeItem === 'songs'}
-              onClick={this.handleItemClick}
-            />
 
           <Menu.Menu position='right'>
           <Menu.Item
