@@ -1,6 +1,5 @@
 import React from 'react'
 import YoutubeCard from './YoutubeCard'
-import MixcloudCard from './MixcloudCard'
 import Carousel from "react-multi-carousel"
 import {Card} from 'semantic-ui-react'
 import "react-multi-carousel/lib/styles.css"
@@ -10,7 +9,6 @@ class YoutubeCarousel extends React.Component{
 
 
   render(){
-    debugger
   return(
     <div
       style={{
@@ -66,7 +64,6 @@ class YoutubeCarousel extends React.Component{
       >
       {this.props.youtube.map((video, index)=>
         <YoutubeCard key={index+1} result={video} show={false}/>
-
       )}
 
 
