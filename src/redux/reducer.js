@@ -36,7 +36,7 @@ const mixcloudResults = (mixcloudResults=[], action) => {
 const userStore = (user=[], action) => {
   switch(action.type){
     case 'LOGIN':
-    user = action.payload
+    user = action.user
     return user
     case 'LOGOUT':
     user = []
@@ -49,7 +49,8 @@ const userStore = (user=[], action) => {
 const userLists = (lists=[], action) => {
   switch(action.type){
     case 'LOGIN':
-    return action.payload.playlists
+    debugger
+    return action.playlists
     case 'ADD_LIST':
     return [...lists, action.payload]
     case 'DELETE_PLAYLIST':

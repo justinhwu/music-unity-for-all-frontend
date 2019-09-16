@@ -20,7 +20,7 @@ class Login extends React.Component{
   }
 
   handleSubmit = (event) => {
-    fetch('http://localhost:3000/login', {
+    fetch('http://localhost:3000/api/v1/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -32,16 +32,14 @@ class Login extends React.Component{
       })
     })
     .then(resp => resp.json())
-    .then(Obj => {
-      if(Obj.error){
-        alert(Obj.error)
+    .then(data => {
+      if(data.authenticated){
+        debugger
+        this.props.sendUser(data.user, data.playlists)
+        localStorage.setItem("token", data.token)
       }
       else{
-        this.props.sendUser(Obj)
-        alert(`Welcome back ${Obj.name}!`)
-        this.setState({
-          redirect: !this.state.redirect
-        })
+        alert("Incorrect username or password")
       }
     })
   }
@@ -85,7 +83,7 @@ class Login extends React.Component{
 
 const mapDispatchtoProps = (dispatch) => {
   return{
-    sendUser: (userObj) => dispatch({type: 'LOGIN', payload: userObj})
+    sendUser: (userObj, playlists) => dispatch({type: 'LOGIN', user: userObj, playlists: playlists})
   }
 }
 
