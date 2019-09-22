@@ -34,14 +34,30 @@ class Login extends React.Component{
     .then(resp => resp.json())
     .then(data => {
       if(data.authenticated){
-        debugger
-        this.props.sendUser(data.user, data.playlists)
+        this.props.sendUser(data.user)
         localStorage.setItem("token", data.token)
+        this.handleToken()
+        alert(`Welcome back ${data.user.name}!`)
       }
       else{
         alert("Incorrect username or password")
       }
     })
+  }
+
+  handleToken = () =>{
+    let token = localStorage.getItem("token")
+     if(token){
+       fetch("http://localhost:3000/api/v1/home", {
+         headers: {
+           "Authentication" : `Bearer ${token}`
+         }
+       })
+       .then(res => res.json())
+       .then(data => {
+         this.props.userLogin(data)
+       })
+     }
   }
 
   render(){
@@ -83,7 +99,10 @@ class Login extends React.Component{
 
 const mapDispatchtoProps = (dispatch) => {
   return{
-    sendUser: (userObj, playlists) => dispatch({type: 'LOGIN', user: userObj, playlists: playlists})
+    sendUser: (userObj) => dispatch({type: 'AUTHENTICATE', user: userObj}),
+    userLogin: (user) => dispatch({
+      type: 'LOGIN', payload: user
+    })
   }
 }
 

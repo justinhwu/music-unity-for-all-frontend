@@ -13,32 +13,7 @@ const API_KEY = 'AIzaSyATmQ8K3LV21JRsFhQ-ZRkPFQS5m4eheEE'
 
 class App extends React.Component{
 
-  constructor(){
-    super()
-    this.state = {
-      currentUser: null,
-      loading: true
-    }
-  }
-
-
    componentDidMount(){
-   let token = localStorage.getItem("token")
-    if(token){
-      fetch("http://localhost:3000/api/v1/home", {
-        headers: {
-          "Authentication" : `Bearer ${token}`
-        }
-      })
-      .then(res => res.json())
-      .then(data => {
-        this.handleUpdateUser(data)
-        this.setState({loading: false})
-      })
-    }else{
-      this.setState({loading: false})
-    }
-
     /*fetch(`https://www.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&maxResults=10&regionCode=US&videoCategoryId=10&key=${API_KEY}`)
     .then(resp => resp.json())
     .then(songs => {
@@ -52,9 +27,7 @@ class App extends React.Component{
     */
   }
 
-  handleUpdateUser = (currentUser) => {
-    this.setState({currentUser})
-  }
+
 
   render(){
     return (
@@ -78,6 +51,7 @@ class App extends React.Component{
 
 const mapStateToProps = (state) => {
   return{
+    validUser: state.validUser,
     user: state.user
   }
 }

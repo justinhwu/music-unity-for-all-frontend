@@ -15,6 +15,7 @@ class NavBar extends React.Component{
 
   handleLogOut = () => {
     this.props.logout()
+    localStorage.removeItem("token")
     setTimeout(alert('Logging Out!'), 1500)
   }
 

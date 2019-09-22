@@ -36,8 +36,7 @@ const mixcloudResults = (mixcloudResults=[], action) => {
 const userStore = (user=[], action) => {
   switch(action.type){
     case 'LOGIN':
-    user = action.user
-    return user
+    return action.payload
     case 'LOGOUT':
     user = []
     return user
@@ -46,11 +45,21 @@ const userStore = (user=[], action) => {
   }
 }
 
+const validUser = (valid=[], action) =>{
+  switch (action.type){
+    case 'AUTHENTICATE':
+    return action.user
+    case 'LOGOUT':
+    return []
+    default:
+    return valid
+  }
+}
+
 const userLists = (lists=[], action) => {
   switch(action.type){
     case 'LOGIN':
-    debugger
-    return action.playlists
+    return action.payload.playlists
     case 'ADD_LIST':
     return [...lists, action.payload]
     case 'DELETE_PLAYLIST':
@@ -126,7 +135,8 @@ const rootReducer = combineReducers({
   handleTrending: handleTrending,
   mixcloudResults: mixcloudResults,
   getYoutube: getYoutube,
-  getMixcloud: getMixcloud
+  getMixcloud: getMixcloud,
+  validUser: validUser
 })
 
 
