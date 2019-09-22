@@ -14,7 +14,20 @@ import API_KEY from './API_key.js'
 class App extends React.Component{
 
    componentDidMount(){
-    /*fetch(`https://www.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&maxResults=10&regionCode=US&videoCategoryId=10&key=${API_KEY}`)
+     let token = localStorage.getItem("token")
+      if(token){
+        fetch("http://localhost:3000/api/v1/home", {
+          headers: {
+            "Authentication" : `Bearer ${token}`
+          }
+        })
+        .then(res => res.json())
+        .then(data => {
+          this.props.userLogin(data)
+        })
+      }
+      /*
+    fetch(`https://www.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&maxResults=10&regionCode=US&videoCategoryId=10&key=${API_KEY}`)
     .then(resp => resp.json())
     .then(songs => {
       songs.items = songs.items.map((item)=> {
@@ -27,12 +40,17 @@ class App extends React.Component{
     */
   }
 
-
+  showLogin = () => {
+    let token = localStorage.getItem("token")
+    return token? <Redirect to="/home" /> :
+    <Login />
+  }
 
   render(){
+    let token = localStorage.getItem("token")
     return (
       <Router>
-        {this.props.user.length !==0?
+        {token ?
           (<div>
             <NavBar />
             <Route exact path='/songs' component={SongContainer}/>
@@ -42,7 +60,7 @@ class App extends React.Component{
             <Route path='/mylists/:id' component={ListPage} />
           </div>
           ): <Redirect to='/'/>}
-        <Route path='/' component={Login}/>
+        <Route path='/' render={this.showLogin}/>
 
       </Router>
     );
@@ -51,8 +69,8 @@ class App extends React.Component{
 
 const mapStateToProps = (state) => {
   return{
-    validUser: state.validUser,
-    user: state.user
+    user: state.user,
+    token: state.tokenStore
   }
 }
 
@@ -60,6 +78,9 @@ const mapDispatchToProps = (dispatch) => {
   return{
     trendingVideos: (videos) => dispatch({
       type: 'GET_TRENDING', payload: videos
+    }),
+    userLogin: (user) => dispatch({
+      type: 'LOGIN', payload: user
     })
   }
 }

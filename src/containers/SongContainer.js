@@ -7,11 +7,11 @@ import YoutubeCarousel from '../components/YoutubeCarousel'
 import MixcloudCarousel from '../components/MixcloudCarousel'
 class SongContainer extends React.Component{
 
-
   componentDidMount(){
     fetch(`http://localhost:3000/getSongs/${this.props.user.id}`)
     .then(resp => resp.json())
     .then(obj => {
+      debugger
       this.props.allSets(obj.mixclouds)
       this.props.allSongs(obj.songs)
     })

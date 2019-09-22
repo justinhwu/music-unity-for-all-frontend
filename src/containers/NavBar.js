@@ -53,6 +53,7 @@ class NavBar extends React.Component{
                 name='songs'
                 active={activeItem === 'songs'}
                 onClick={this.handleItemClick}
+                icon='music'
               />
           </Menu.Menu>
 

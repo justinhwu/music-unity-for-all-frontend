@@ -45,14 +45,14 @@ const userStore = (user=[], action) => {
   }
 }
 
-const validUser = (valid=[], action) =>{
+const tokenStore = (token=[], action) =>{
   switch (action.type){
-    case 'AUTHENTICATE':
-    return action.user
+    case 'SET_TOKEN':
+    return action.token
     case 'LOGOUT':
     return []
     default:
-    return valid
+    return token
   }
 }
 
@@ -136,7 +136,7 @@ const rootReducer = combineReducers({
   mixcloudResults: mixcloudResults,
   getYoutube: getYoutube,
   getMixcloud: getMixcloud,
-  validUser: validUser
+  tokenStore: tokenStore
 })
 
 

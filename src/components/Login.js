@@ -34,9 +34,8 @@ class Login extends React.Component{
     .then(resp => resp.json())
     .then(data => {
       if(data.authenticated){
-        this.props.sendUser(data.user)
         localStorage.setItem("token", data.token)
-        this.handleToken()
+        this.props.sendToken(data.token)
         alert(`Welcome back ${data.user.name}!`)
       }
       else{
@@ -45,25 +44,7 @@ class Login extends React.Component{
     })
   }
 
-  handleToken = () =>{
-    let token = localStorage.getItem("token")
-     if(token){
-       fetch("http://localhost:3000/api/v1/home", {
-         headers: {
-           "Authentication" : `Bearer ${token}`
-         }
-       })
-       .then(res => res.json())
-       .then(data => {
-         this.props.userLogin(data)
-       })
-     }
-  }
-
   render(){
-    if(this.props.user.length !==0){
-      return <Redirect to='/home'/>
-    }
     return(
     <div style={{backgroundImage: `url(${"/logo_transparent.png"})`}}>
       <Grid textAlign='center' style={{ height: '75vh' }} verticalAlign='middle' >
@@ -99,16 +80,14 @@ class Login extends React.Component{
 
 const mapDispatchtoProps = (dispatch) => {
   return{
-    sendUser: (userObj) => dispatch({type: 'AUTHENTICATE', user: userObj}),
-    userLogin: (user) => dispatch({
-      type: 'LOGIN', payload: user
-    })
+    sendToken: (tokenObj) => dispatch({type: 'SET_TOKEN', token: tokenObj})
   }
 }
 
 const mapStateToProps = (state) => {
   return{
-    user: state.user
+    user: state.user,
+    token: state.token
   }
 }
 
