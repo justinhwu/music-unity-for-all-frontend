@@ -9,7 +9,7 @@ import HomePage from './containers/HomePage'
 import NavBar from './containers/NavBar'
 import ListPage from './containers/ListPage'
 import SongContainer from './containers/SongContainer'
-const API_KEY = 'AIzaSyATmQ8K3LV21JRsFhQ-ZRkPFQS5m4eheEE'
+import API_KEY from './API_key.js'
 
 class App extends React.Component{
 

@@ -2,7 +2,7 @@ import searchYoutube from 'youtube-api-v3-search';
 import React from 'react'
 import { Grid, Form, Input, Button, Icon} from 'semantic-ui-react'
 import {connect} from 'react-redux'
-const API_KEY = 'AIzaSyATmQ8K3LV21JRsFhQ-ZRkPFQS5m4eheEE'
+import API_KEY from '../API_key.js'
 
 class SearchBar extends React.Component{
 
